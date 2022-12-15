@@ -25,8 +25,8 @@ $(PHILO):	${OBJS}
 			$(CC) $(CFLAGS) ${OBJS} -g3 -L./lib -lft -lprintf -lgnl -o $(PHILO)
 
 clean:
-			rm -rf ./srcs/*.o
-			rm -rf ./srcs/*.d
+			rm -rf ./mandatory/srcs/*.o
+			rm -rf ./mandatory/srcs/*.d
 			
 fclean:		clean
 			rm -rf $(PHILO) ./lib/*.a
