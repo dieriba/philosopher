@@ -1,4 +1,4 @@
-SRCS		= ./mandatory/srcs/philo.c
+SRCS		= ./mandatory/srcs/initialization.c ./mandatory/srcs/philo.c ./mandatory/srcs/threading.c ./mandatory/srcs/state.c ./mandatory/srcs/utils.c
 
 OBJS		= $(SRCS:.c=.o)
 
