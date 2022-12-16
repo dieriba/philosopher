@@ -31,7 +31,6 @@ typedef struct t_philo
 typedef struct t_info
 {
 	t_philo			*philosophers;
-	t_death			*death;
 	int				guests_numbers;
 	int				plate_eaten;
 	int				min_dinner;
@@ -44,25 +43,15 @@ typedef struct t_info
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	keeper;
 	pthread_mutex_t	print;
-	pthread_t		watchers;
 } t_info;
-
-typedef struct t_death
-{
-    struct timeval	timestamps;
-	int				dead;
-	pthread_mutex_t	time_p;
-	int				in_use;
-}	t_death;
-
 
 void release_forks(t_philo *philo);
 
 int eating(t_philo *philo);
 int takes_forks(t_philo *philo);
+void    watchers_phil(void *args);
 int sleeping(t_philo *philo);
 int thinking(t_philo *philo);
 int initialization(t_info *dinner_info, int argc, char **argv);
 int start_and_joining_threads(t_info *dinner_info);
 int phil_is_dead(t_philo *phil);
-// void print_state_time(t_philosopher *philosopher, char *state);

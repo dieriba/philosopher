@@ -13,7 +13,6 @@ int takes_forks(t_philo *philo)
     pthread_mutex_lock(philo -> right);
     philo -> right_f = 1;
     gettimeofday(&philo -> curr_step, NULL);
-    gettimeofday(&philo -> curr_step, NULL);
     pthread_mutex_lock(&philo -> dinner_info -> print);
     if (phil_is_dead(philo))
         return (1);

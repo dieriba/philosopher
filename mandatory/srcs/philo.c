@@ -47,9 +47,9 @@ int	main(int argc, char **argv)
 		return (1);
 	if (initialization(&dinner_info, argc, argv))
 		return (1);
-	// print_struct(&dinner_info);
 	if (start_and_joining_threads(&dinner_info))
 		return (1);
+	/* print_struct(&dinner_info); */
 	printf("A total of %d were eaten\n", dinner_info.plate_eaten);
 	free(dinner_info.philosophers);
 	free(dinner_info.forks);

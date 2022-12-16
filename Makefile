@@ -1,5 +1,9 @@
-SRCS		= ./mandatory/srcs/initialization.c ./mandatory/srcs/philo.c ./mandatory/srcs/threading.c ./mandatory/srcs/state.c ./mandatory/srcs/utils.c
-
+SRCS		= ./mandatory/srcs/initialization.c \
+				./mandatory/srcs/philo.c \
+				./mandatory/srcs/threading.c \
+				./mandatory/srcs/state.c \
+				./mandatory/srcs/death.c \
+				./mandatory/srcs/get_time.c
 OBJS		= $(SRCS:.c=.o)
 
 DEPS		= $(SRCS:.c=.d)
@@ -22,7 +26,7 @@ $(PHILO):	${OBJS}
 			cp ./libft/libft.a ./lib
 			make -C ./libft/get_next_line
 			cp ./libft/get_next_line/libgnl.a ./lib
-			$(CC) $(CFLAGS) ${OBJS} -g3 -L./lib -lft -lprintf -lgnl -o $(PHILO)
+			$(CC) $(CFLAGS) ${OBJS} -g3 -L./lib -lft -lpthread -lprintf -lgnl -o $(PHILO)
 
 clean:
 			rm -rf ./mandatory/srcs/*.o
