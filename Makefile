@@ -1,10 +1,10 @@
-SRCS		=  ./mandatory/srcs/initialization.c \
-				./mandatory/srcs/philo.c \
-				./mandatory/srcs/threading.c \
-				./mandatory/srcs/state.c \
-				./mandatory/srcs/death.c \
-				./mandatory/srcs/time.c \
-				./mandatory/srcs/mutex.c
+SRCS		=  ./philo/srcs/initialization.c \
+				./philo/srcs/philo.c \
+				./philo/srcs/threading.c \
+				./philo/srcs/state.c \
+				./philo/srcs/death.c \
+				./philo/srcs/time.c \
+				./philo/srcs/mutex.c
 OBJS		= $(SRCS:.c=.o)
 
 DEPS		= $(SRCS:.c=.d)
