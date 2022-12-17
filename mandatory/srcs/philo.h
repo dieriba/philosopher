@@ -55,5 +55,5 @@ int			initialization(t_info *dinner_info, int argc, char **argv);
 int			start_and_joining_threads(t_info *dinner_info);
 int			phil_is_dead(t_philo *phil);
 void		unlock_mutexes(t_philo *philo);
-// long int    format_time(long time);
+long int    format_time(long time);
 long int    current_time(void);

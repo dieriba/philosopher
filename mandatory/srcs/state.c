@@ -9,7 +9,7 @@ int takes_right(t_philo *philo)
     philo -> keeper_set = 1;
     if (phil_is_dead(philo))
         return (1);
-    printf("%li %i takes a fork\n", philo -> curr_step.tv_sec, philo -> guest_number + 1);
+    printf("%08li %i takes a fork\n", format_time(philo -> curr_step.tv_usec), philo -> guest_number + 1);
     pthread_mutex_unlock(&philo -> dinner_info -> keeper);
     philo -> keeper_set = 0;
     return (0);
@@ -24,7 +24,7 @@ int takes_left(t_philo *philo)
     if (phil_is_dead(philo))
         return (1);
     gettimeofday(&philo -> curr_step, NULL);
-    printf("%li %i takes a fork\n", philo -> curr_step.tv_sec, philo -> guest_number + 1);
+    printf("%08li %i takes a fork\n", format_time(philo -> curr_step.tv_usec), philo -> guest_number + 1);
     pthread_mutex_unlock(&philo -> dinner_info -> keeper);
     philo -> keeper_set = 0;
     return (0);
@@ -56,7 +56,7 @@ int sleeping(t_philo *philo)
     if (phil_is_dead(philo))
             return (1);
     gettimeofday(&philo -> curr_step, NULL);
-    printf("%li %i is sleeping\n", philo -> curr_step.tv_sec, philo -> guest_number + 1);
+    printf("%08li %i is sleeping\n", format_time(philo -> curr_step.tv_usec), philo -> guest_number + 1);
     philo -> keeper_set = 0;
     pthread_mutex_unlock(&philo -> dinner_info -> keeper);
     usleep(philo -> dinner_info -> time_to_sleep);
@@ -70,7 +70,7 @@ int thinking(t_philo *philo)
     if (phil_is_dead(philo))
             return (1);
     gettimeofday(&philo -> curr_step, NULL);
-    printf("%li %i is thinking\n", philo -> curr_step.tv_sec, philo -> guest_number + 1);
+    printf("%08li %i is thinking\n", format_time(philo -> curr_step.tv_usec), philo -> guest_number + 1);
     pthread_mutex_unlock(&philo -> dinner_info -> keeper);
     philo -> keeper_set = 0;
     return (0);
@@ -94,7 +94,7 @@ int eating(t_philo *philo)
     if (phil_is_dead(philo))
         return (1);
     gettimeofday(&philo -> curr_step, NULL);
-    printf("%li %i is eating\n",  philo -> curr_step.tv_sec, philo -> guest_number + 1);
+    printf("%08li %i is eating\n",  format_time(philo -> curr_step.tv_usec), philo -> guest_number + 1);
     gettimeofday(&philo -> last_dinner, NULL);
     if (phil_is_dead(philo))
         return (1);
