@@ -25,7 +25,6 @@ void    watchers_phil(t_info *dinner_info)
     int  i;
     
 	i = -1;
-    sleep(1);
     while (1)
     {
         while (++i < dinner_info -> guests_numbers)
@@ -34,7 +33,7 @@ void    watchers_phil(t_info *dinner_info)
             if (current_time() - dinner_info->philosophers[i].last_dinner.tv_usec >= (dinner_info -> time_to_die * 1000))
             {
                 dinner_info -> num_of_dead_phil = 1;
-                printf("%08li %d died\n", current_time(), dinner_info -> philosophers[i].guest_number + 1);
+                printf("%08li %d died\n", current_time() - dinner_info->philosophers[i].last_dinner.tv_usec, dinner_info -> philosophers[i].guest_number + 1);
                 pthread_mutex_unlock(&dinner_info -> keeper);
                 return ;
             }

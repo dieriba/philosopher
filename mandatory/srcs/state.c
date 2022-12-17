@@ -59,7 +59,7 @@ int sleeping(t_philo *philo)
     printf("%08li %i is sleeping\n", format_time(philo -> curr_step.tv_usec), philo -> guest_number + 1);
     philo -> keeper_set = 0;
     pthread_mutex_unlock(&philo -> dinner_info -> keeper);
-    usleep(philo -> dinner_info -> time_to_sleep);
+    usleep(philo -> dinner_info -> time_to_sleep * 1000);
     return (0);
 }
 
@@ -106,6 +106,6 @@ int eating(t_philo *philo)
     }
     pthread_mutex_unlock(&philo -> dinner_info -> keeper);
     philo -> keeper_set = 0;
-    usleep(philo -> dinner_info -> time_to_eat);
+    usleep(philo -> dinner_info -> time_to_eat * 1000);
     return (0);
 }
