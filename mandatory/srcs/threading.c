@@ -8,8 +8,8 @@ void    *routine(void *args)
     pthread_mutex_lock(&philo -> dinner_info -> keeper);
     gettimeofday(&philo -> last_dinner, 0);
     pthread_mutex_unlock(&philo -> dinner_info -> keeper);
-    if (philo -> guest_number % 2)
-        usleep(100);
+    if (philo -> guest_number)
+        usleep(300);
     while (1)
     {
         pthread_mutex_lock(&philo -> dinner_info -> keeper);
