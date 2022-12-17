@@ -5,9 +5,6 @@ void    *routine(void *args)
 	t_philo	*philo;
 
 	philo = (t_philo *)(args);
-    pthread_mutex_lock(&philo -> dinner_info -> keeper);
-    gettimeofday(&philo -> last_dinner, 0);
-    pthread_mutex_unlock(&philo -> dinner_info -> keeper);
     if (philo -> guest_number)
         usleep(300);
     while (1)
@@ -39,8 +36,11 @@ int start_and_joining_threads(t_info *dinner_info)
 
 	i = -1;
 	while (++i < dinner_info -> guests_numbers)
+    {
+        gettimeofday(&dinner_info -> philosophers[i].last_dinner, NULL);
 		if (pthread_create(&dinner_info -> philosophers[i].thread, NULL, routine, &dinner_info -> philosophers[i]))
             return (1);
+    }
     watchers_phil(dinner_info);
 	i = -1;
 	while (++i < dinner_info -> guests_numbers  && dinner_info -> guests_numbers > 1)

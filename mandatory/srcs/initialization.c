@@ -51,9 +51,9 @@ static int check_error(t_info *dinner_info, int argc, char **argv)
 	dinner_info -> num_of_dead_phil = 0;
 	dinner_info -> keeper_set = 0;
 	dinner_info -> guests_numbers = ft_atoi(argv[1]);
-	dinner_info -> time_to_die = ft_atoi(argv[2]);
-	dinner_info -> time_to_eat = ft_atoi(argv[3]);
-	dinner_info -> time_to_sleep = ft_atoi(argv[4]);
+	dinner_info -> time_to_die = ft_atoi(argv[2]) * 1000;
+	dinner_info -> time_to_eat = ft_atoi(argv[3]) * 1000;
+	dinner_info -> time_to_sleep = ft_atoi(argv[4]) * 1000;
 	if (argc > 5)
 		dinner_info -> min_dinner = ft_atoi(argv[5]);
 	else
