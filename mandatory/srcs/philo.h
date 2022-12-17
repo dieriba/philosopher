@@ -17,11 +17,10 @@ typedef struct t_philo
 	int				has_eaten_all;
 	int				eaten_dinner;
 	int				finished_meal;
-	int				state;
 	int				right_f;
 	int				left_f;
+	int				leaved;
 	int				is_dead;
-	int				print;
     struct timeval	curr_step;
 	struct timeval	last_dinner;
 	pthread_t		thread;
@@ -34,17 +33,15 @@ typedef struct t_info
 {
 	t_philo			*philosophers;
 	int				guests_numbers;
-	int				plate_eaten;
 	int				min_dinner;
+	int				leaved_guests;
 	int				time_to_sleep;
 	int				time_to_eat;
 	int				time_to_die;
-	int				have_eat_all;
 	int				num_of_dead_phil;
 	int				keeper_set;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	keeper;
-	pthread_mutex_t	print;
 } t_info;
 
 void release_forks(t_philo *philo);

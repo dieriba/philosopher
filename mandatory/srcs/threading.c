@@ -43,16 +43,19 @@ int start_and_joining_threads(t_info *dinner_info)
             return (1);
     watchers_phil(dinner_info);
 	i = -1;
-	while (++i < dinner_info -> guests_numbers)
+	while (++i < dinner_info -> guests_numbers  && dinner_info -> guests_numbers > 1)
 		if (pthread_join(dinner_info -> philosophers[i].thread, NULL))
             return (1);
+    if (dinner_info -> guests_numbers == 1)
+    {
+        if (pthread_detach(dinner_info -> philosophers[0].thread))
+            return (1);
+    }
 	i = -1;
-	while (++i < dinner_info -> guests_numbers)
+	while (++i < dinner_info -> guests_numbers && dinner_info -> guests_numbers > 1)
 		if (pthread_mutex_destroy(&dinner_info -> forks[i]))
             return (1);
 	if (pthread_mutex_destroy(&dinner_info -> keeper))
-        return (1);
-    if (pthread_mutex_destroy(&dinner_info -> print))
         return (1);
     return (0);
 }

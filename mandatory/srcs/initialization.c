@@ -7,14 +7,13 @@ static void initialize_philo(t_info *dinner_info)
 	i = -1;
 	while (++i < dinner_info -> guests_numbers)
 	{
-		dinner_info -> philosophers[i].print = 0;
 		dinner_info -> philosophers[i].keeper_set = 0;
+		dinner_info -> philosophers[i].leaved = 0;
 		dinner_info -> philosophers[i].guest_number = i;
 		dinner_info -> philosophers[i].eaten_dinner = 0;
 		dinner_info -> philosophers[i].is_dead = 0;
 		dinner_info -> philosophers[i].left = &dinner_info -> forks[i];
 		dinner_info -> philosophers[i].finished_meal = 0;
-		dinner_info -> philosophers[i].state = 0;
 		dinner_info -> philosophers[i].has_eaten_all = 0;
 		dinner_info -> philosophers[i].dinner_info = dinner_info;
 		if ((i + 1) != dinner_info -> guests_numbers)
@@ -29,7 +28,7 @@ static int initialize_dinner(t_info *dinner_info)
 	int i;
 
 	i = -1;
-	dinner_info -> have_eat_all = 0;
+	dinner_info -> leaved_guests = 0;
 	dinner_info -> philosophers = malloc(sizeof(t_philo) * dinner_info -> guests_numbers);
 	if (!dinner_info -> philosophers)
 		return (ft_putstr_fd("Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2));
@@ -43,8 +42,6 @@ static int initialize_dinner(t_info *dinner_info)
 		if (pthread_mutex_init(&dinner_info -> forks[i], NULL))
 			return (ft_putstr_fd("Sadly, We were not able to initialize all of the mutexes (mutex)\n", 2));
 	if  (pthread_mutex_init(&dinner_info -> keeper, NULL))
-			return (ft_putstr_fd("Sadly, We were not able to initialize all of the mutexes (mutex)\n", 2));
-	if  (pthread_mutex_init(&dinner_info -> print, NULL))
 			return (ft_putstr_fd("Sadly, We were not able to initialize all of the mutexes (mutex)\n", 2));
 	return(0);
 }

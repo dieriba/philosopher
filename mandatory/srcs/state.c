@@ -88,7 +88,6 @@ void release_forks(t_philo *philo)
 
 int eating(t_philo *philo)
 {
-    philo -> state = 1;
     philo -> finished_meal++;
     pthread_mutex_lock(&philo -> dinner_info -> keeper);
     philo -> keeper_set = 1;
@@ -100,12 +99,13 @@ int eating(t_philo *philo)
     if (phil_is_dead(philo))
         return (1);
     philo -> eaten_dinner++;
-    philo -> dinner_info -> plate_eaten++;
     if (philo -> eaten_dinner == philo -> dinner_info -> min_dinner)
+    {
+        philo -> dinner_info -> leaved_guests++;
         return (1);
+    }
     pthread_mutex_unlock(&philo -> dinner_info -> keeper);
     philo -> keeper_set = 0;
     usleep(philo -> dinner_info -> time_to_eat);
-    philo -> state = 0;
     return (0);
 }
