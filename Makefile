@@ -30,10 +30,13 @@ $(PHILO):	${OBJS}
 			$(CC) $(CFLAGS) ${OBJS} -g3 -L./lib -lft -lpthread -lprintf -lgnl -o $(PHILO)
 
 clean:
-			rm -rf ./mandatory/srcs/*.o
-			rm -rf ./mandatory/srcs/*.d
+			rm -rf ./mandatory/srcs/$(OBJS)
+			rm -rf ./mandatory/srcs/$(DEPS)
 			
 fclean:		clean
+			make -C ./libft fclean
+			make -C ./libft/ft_printf fclean
+			make -C ./libft/get_next_line fclean
 			rm -rf $(PHILO) ./lib/*.a
 
 re:			fclean all
