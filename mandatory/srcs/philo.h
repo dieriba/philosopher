@@ -12,6 +12,7 @@ typedef struct t_info	t_info;
 typedef struct t_death	t_death;
 typedef struct t_philo
 {
+	int				keeper_set;
 	int				guest_number;
 	int				has_eaten_all;
 	int				eaten_dinner;
@@ -20,6 +21,7 @@ typedef struct t_philo
 	int				right_f;
 	int				left_f;
 	int				is_dead;
+	int				print;
     struct timeval	curr_step;
 	struct timeval	last_dinner;
 	pthread_t		thread;
@@ -47,11 +49,14 @@ typedef struct t_info
 
 void release_forks(t_philo *philo);
 
-int eating(t_philo *philo);
-int takes_forks(t_philo *philo);
-void    watchers_phil(void *args);
-int sleeping(t_philo *philo);
-int thinking(t_philo *philo);
-int initialization(t_info *dinner_info, int argc, char **argv);
-int start_and_joining_threads(t_info *dinner_info);
-int phil_is_dead(t_philo *phil);
+int			eating(t_philo *philo);
+int			takes_forks(t_philo *philo);
+void		watchers_phil(t_info *philo);
+int			sleeping(t_philo *philo);
+int			thinking(t_philo *philo);
+int			initialization(t_info *dinner_info, int argc, char **argv);
+int			start_and_joining_threads(t_info *dinner_info);
+int			phil_is_dead(t_philo *phil);
+void		unlock_mutexes(t_philo *philo);
+// long int    format_time(long time);
+long int    current_time(void);

@@ -1,26 +1,38 @@
-int phil_is_dead(t_philo *phil)
+#include "philo.h"
+
+int phil_is_dead(t_philo *philo)
 {
-    if (!phil -> is_dead && !phil -> dinner_info -> num_of_dead_phil)
+    if (philo -> dinner_info -> num_of_dead_phil 
+        && !philo -> dinner_info -> min_dinner)
+    {
+        unlock_mutexes(philo);
+        return (1);
+    }
+    if (!philo -> is_dead)
         return (0);
-    if (phil -> right_f)
-        pthread_mutex_unlock(phil->right);
-    if (phil -> left_f)
-        pthread_mutex_unlock(phil->left);
-    return (1);
+    return (0);
 }
 
-void    watchers_phil(void *args)
+void    watchers_phil(t_info *dinner_info)
 {
-	t_info	*dinner_info;
-    int		i;
+    int  i;
 
-	i = 0;
-	dinner_info = (t_info *)args;
-    struct timeval now;
+	i = -1;
     while (1)
     {
-        
+        while (++i < dinner_info -> guests_numbers)
+        {
+            pthread_mutex_lock(&dinner_info -> keeper);
+            if (current_time() - dinner_info->philosophers[i].last_dinner.tv_sec >= dinner_info -> time_to_die)
+            {
+                dinner_info -> num_of_dead_phil = 1;
+                printf("%li %d died\n", current_time(), dinner_info -> philosophers[i].guest_number + 1);
+                pthread_mutex_unlock(&dinner_info -> keeper);
+                return ;
+            }
+            pthread_mutex_unlock(&dinner_info -> keeper);
+        }
+        usleep(60);
+        i = -1;
     }
-    printf("Exited\n");
-    return (NULL);
 }

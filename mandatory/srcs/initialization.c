@@ -7,8 +7,8 @@ static void initialize_philo(t_info *dinner_info)
 	i = -1;
 	while (++i < dinner_info -> guests_numbers)
 	{
-		dinner_info -> death[i].dead = 0;
-		dinner_info -> death[i].in_use = 0;
+		dinner_info -> philosophers[i].print = 0;
+		dinner_info -> philosophers[i].keeper_set = 0;
 		dinner_info -> philosophers[i].guest_number = i;
 		dinner_info -> philosophers[i].eaten_dinner = 0;
 		dinner_info -> philosophers[i].is_dead = 0;
@@ -33,9 +33,6 @@ static int initialize_dinner(t_info *dinner_info)
 	dinner_info -> philosophers = malloc(sizeof(t_philo) * dinner_info -> guests_numbers);
 	if (!dinner_info -> philosophers)
 		return (ft_putstr_fd("Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2));
-	dinner_info -> death = malloc(sizeof(t_death) * dinner_info -> guests_numbers);
-	if (!dinner_info -> philosophers)
-		return (ft_putstr_fd("Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2));
 	dinner_info -> forks = malloc(sizeof(pthread_mutex_t) * dinner_info -> guests_numbers);
 	if (!dinner_info->forks)
 	{
@@ -43,7 +40,7 @@ static int initialize_dinner(t_info *dinner_info)
 		return (ft_putstr_fd("Sadly, All forks could not be set on the table (malloc)\n", 2));
 	}
 	while (++i < dinner_info -> guests_numbers)
-		if (pthread_mutex_init(&dinner_info -> forks[i], NULL) || pthread_mutex_init(&dinner_info -> death[i].time_p, NULL))
+		if (pthread_mutex_init(&dinner_info -> forks[i], NULL))
 			return (ft_putstr_fd("Sadly, We were not able to initialize all of the mutexes (mutex)\n", 2));
 	if  (pthread_mutex_init(&dinner_info -> keeper, NULL))
 			return (ft_putstr_fd("Sadly, We were not able to initialize all of the mutexes (mutex)\n", 2));
@@ -64,8 +61,8 @@ static int check_error(t_info *dinner_info, int argc, char **argv)
 		dinner_info -> min_dinner = ft_atoi(argv[5]);
 	else
 		dinner_info -> min_dinner = 0;
-	if (dinner_info -> guests_numbers < 2)
-		return (ft_putstr_fd("Philosophers numbers must be superior to 1", 1));
+	if (dinner_info -> guests_numbers < 1)
+		return (ft_putstr_fd("Philosophers numbers must be greater or equal to 1", 1));
 	if (dinner_info -> time_to_die < 0)
 		return (ft_putstr_fd("Time to die must be a non negative value", 1));
 	if (dinner_info -> time_to_eat < 0)
