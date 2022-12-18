@@ -13,9 +13,12 @@
 
 int	ft_putstr_fd(char *s, int fd)
 {
+	size_t	len;
+
 	if (!s || fd < 0)
 		return (-1);
-	else if (write (fd, s, ft_strlen(s)) < 0)
+	len = ft_strlen(s);
+	if (write (fd, s, len) < 0)
 		return (-1);
-	return (0);
+	return (len);
 }

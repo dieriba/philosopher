@@ -53,15 +53,15 @@ static int	check_error(t_info *dinner_info, int argc, char **argv)
 	else
 		dinner_info -> min_dinner = 0;
 	if (dinner_info -> guests_numbers < 1)
-		return (ft_putstr_fd("Philosophers numbers must be greater or equal to 1", 1));
+		return (ft_putstr_fd("Philosophers numbers must be greater or equal to 1\n", 2));
 	if (dinner_info -> time_to_die < 0)
-		return (ft_putstr_fd("Time to die must be a non negative value", 1));
+		return (ft_putstr_fd("Time to die must be a non negative value\n", 2));
 	if (dinner_info -> time_to_eat < 0)
-		return (ft_putstr_fd("Time to eat must be a non negative value", 1));
+		return (ft_putstr_fd("Time to eat must be a non negative value\n", 2));
 	if (dinner_info -> time_to_sleep < 0)
-		return (ft_putstr_fd("Time to sleep must be a non negative value", 1));
+		return (ft_putstr_fd("Time to sleep must be a non negative value\n", 2));
 	if (argc > 5 && dinner_info -> min_dinner <= 0)
-		return (ft_putstr_fd("number of eats must be superior or equal to 0", 1));
+		return (ft_putstr_fd("number of eats must be superior or equal to 0\n", 2));
 	return (0);
 }
 
