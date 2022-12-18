@@ -44,8 +44,6 @@ typedef struct t_info
 	int				time_to_sleep;
 	int				time_to_eat;
 	int				time_to_die;
-	int				we_dead;
-	int				keeper_set;
 	pthread_t		watchers;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	keeper;
