@@ -35,8 +35,8 @@ $(PHILO):	${OBJS}
 			$(CC) $(CFLAGS) ${OBJS} -g3 -L./lib -lft -lpthread -lprintf -lgnl -o $(PHILO)
 
 clean:
-			rm -rf ./mandatory/srcs/$(OBJS)
-			rm -rf ./mandatory/srcs/$(DEPS)
+			rm -rf /mandatory/srcs/$(OBJS)
+			rm -rf /mandatory/srcs/$(DEPS)
 			
 fclean:		clean
 			make -C ./libft fclean

@@ -42,7 +42,7 @@ BONUS		=	ft_printf.c \
 				ft_putstr_fd.c \
 				ft_write_add.c \
 
-CC			=	gcc -g3
+CC			=	cc
 
 CFLAGS		=	-Wall -Wextra -Werror
 
