@@ -21,6 +21,7 @@ typedef struct t_philo
 	int				left_f;
 	int				leaved;
 	int				is_dead;
+	int				print;
     struct timeval	curr_step;
 	struct timeval	last_dinner;
 	pthread_t		thread;
@@ -42,6 +43,7 @@ typedef struct t_info
 	int				keeper_set;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	keeper;
+	pthread_mutex_t	print;
 } t_info;
 
 void release_forks(t_philo *philo);

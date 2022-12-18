@@ -1,2 +1,2 @@
-mandatory/srcs/initialization.o: mandatory/srcs/initialization.c \
- mandatory/srcs/philo.h mandatory/srcs/../../libft/libft.h
+philo/srcs/initialization.o: philo/srcs/initialization.c \
+ philo/srcs/philo.h philo/srcs/../../libft/libft.h

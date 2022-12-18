@@ -4,7 +4,12 @@ SRCS		=  ./philo/srcs/initialization.c \
 				./philo/srcs/state.c \
 				./philo/srcs/death.c \
 				./philo/srcs/time.c \
-				./philo/srcs/mutex.c
+				./philo/srcs/mutex.c \
+				./philo/srcs/print.c \
+				./philo/srcs/syscall.c \
+				./philo/srcs/routine.c \
+
+			
 OBJS		= $(SRCS:.c=.o)
 
 DEPS		= $(SRCS:.c=.d)
@@ -13,7 +18,7 @@ CC			=	cc
 
 CFLAGS		=	-Wall -Wextra -Werror -MMD
 
-PHILO		=	philo
+PHILO		=	philosopher
 
 all:		$(PHILO)
 
