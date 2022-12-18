@@ -13,7 +13,7 @@ int	thinking(t_philo *philo)
     return (0);
 }
 
-void    *routine(void *args)
+void	*routine(void *args)
 {
 	t_philo	*philo;
 
@@ -30,6 +30,6 @@ void    *routine(void *args)
         if (sleeping(philo) || thinking(philo))
             break ;
     }
-    unlock_mutexes(philo);
-    return (NULL);
+	unlock_mutexes(philo);
+	return (NULL);
 }

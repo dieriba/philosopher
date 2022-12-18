@@ -14,7 +14,6 @@
 typedef struct t_philo		t_philo;
 typedef struct t_info		t_info;
 typedef struct t_death		t_death;
-typedef struct t_death_info	t_death_info;
 typedef struct t_philo
 {
 	int				keeper_set;
@@ -64,7 +63,7 @@ void	release_forks(t_philo *philo);
 void	*watchers_phil(void *args);
 void	free_struct(t_info *dinner_info);
 void    *routine(void *args);
-void    update_dinner(t_death *death);
+void    (t_death *death);
 
 int		unlock_mutexes(t_philo *philo);
 int		eating(t_philo *philo);

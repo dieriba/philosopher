@@ -20,6 +20,8 @@ static void	initialize_philo(t_info *dinner_info)
 	{
 		dinner_info -> death[i].dead = 0;
 		dinner_info -> philosophers[i].keeper_set = 0;
+		dinner_info -> philosophers[i].left_f = 0;
+		dinner_info -> philosophers[i].right_f = 0;
 		dinner_info -> philosophers[i].leaved = 0;
 		dinner_info -> philosophers[i].guest_number = i;
 		dinner_info -> philosophers[i].time_to_eat = dinner_info -> time_to_eat;

@@ -1,9 +1,9 @@
 #include "philo.h"
 
-static int		join_threads(t_info *dinner_info)
+static int	join_threads(t_info *dinner_info)
 {
 	size_t	i;
-    size_t  j;
+    size_t 	j;
 
     j = dinner_info -> guests_numbers;
 	i = -1;
@@ -15,7 +15,7 @@ static int		join_threads(t_info *dinner_info)
 	return (0);
 }
 
-static int     create_threads(t_info *dinner_info)
+static int	create_threads(t_info *dinner_info)
 {
     int  i;
 
@@ -30,7 +30,7 @@ static int     create_threads(t_info *dinner_info)
     return (0);
 }
 
-int start_and_joining_threads(t_info *dinner_info)
+int	start_and_joining_threads(t_info *dinner_info)
 {
 	int	i;
 
