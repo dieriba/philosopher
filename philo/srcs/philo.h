@@ -63,7 +63,6 @@ void	release_forks(t_philo *philo);
 void	*watchers_phil(void *args);
 void	free_struct(t_info *dinner_info);
 void    *routine(void *args);
-void    (t_death *death);
 
 int		unlock_mutexes(t_philo *philo);
 int		eating(t_philo *philo);
