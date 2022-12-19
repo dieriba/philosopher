@@ -2,25 +2,7 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <pthread.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/time.h>
-# include <string.h>
-# include <sys/time.h>
-# include <fcntl.h>           /* For O_* constants */
-# include <sys/stat.h>        /* For mode constants */
-# include <semaphore.h>
-# include "../../libft/libft.h"
 
-# define SEM_FORKS "/sem_forks"
-# define SEM_KEEPER "/sem_keeper"
-# define SEM_PRINT "/sem_print"
-# define SEM_DEATH "/sem_death"
-# define SEM_ERROR "/sem_error"
-typedef struct t_philo		t_philo;
-typedef struct t_info		t_info;
 
 typedef struct t_philo
 {
