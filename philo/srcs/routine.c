@@ -3,7 +3,7 @@
 int	sleeping(t_philo *philo)
 {
 	print_state(philo, "is sleeping");
-    usleep(philo -> time_to_sleep);
+    usleep(philo -> time_to_sleep * 1000);
     return (0);
 }
 

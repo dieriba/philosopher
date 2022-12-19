@@ -4,7 +4,7 @@ int	takes_right(t_philo *philo)
 {
 	pthread_mutex_lock(philo -> right);
 	philo -> right_f = 1;
-	print_state(philo, "takes a fork");
+	print_state(philo, "has taken a fork");
     return (0);
 }
 
@@ -12,7 +12,7 @@ int	takes_left(t_philo *philo)
 {
     pthread_mutex_lock(philo -> left);
     philo -> left_f = 1;
-    print_state(philo, "takes a fork");
+    print_state(philo, "has taken a fork");
     return (0);
 }
 
@@ -54,10 +54,10 @@ int	eating(t_philo *philo)
     death = philo -> death;
     if (print_state(philo, "is eating"))
         return (1);
-    usleep(philo -> time_to_eat);
     pthread_mutex_lock(&death -> death);
     gettimeofday(&death -> last_dinner, NULL);
     pthread_mutex_unlock(&death -> death);
+    usleep(philo -> time_to_eat * 1000);
     philo -> eaten_dinner++;
     if (philo -> eaten_dinner == philo -> min_dinner)
     {

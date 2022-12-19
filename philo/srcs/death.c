@@ -19,8 +19,7 @@ int	condition_met(t_info *dinner_info)
 	if (dinner_info -> num_of_dead_phil )
 		return (1);
 	pthread_mutex_lock(&dinner_info -> keeper);
-	if ((dinner_info -> leaved_guests 
-        == dinner_info -> guests_numbers))
+	if (dinner_info -> leaved_guests == dinner_info -> guests_numbers)
     {
         pthread_mutex_unlock(&dinner_info -> keeper);
         return (1);
@@ -41,7 +40,10 @@ int	who_died(t_info *dinner_info, t_death *death)
     {
         pthread_mutex_lock(&death[i].death);
         time = current_time() - convert_ts_to_ms(&death[i]);
+        // printf("Curremt Time : %ld, Convert time death  :%ld\n", current_time(), convert_ts_to_ms(&death[i]));
+        // printf("Philosopher %ld time is  : %f\n", philo[i].guest_number, ((float)time/1000) );
         pthread_mutex_unlock(&death[i].death);
+        // printf("Time : %ld, time to die  : %d\n",time, dinner_info -> time_to_die );
         if (time >= dinner_info -> time_to_die)
         {
             pthread_mutex_lock(&dinner_info -> keeper);
@@ -67,6 +69,7 @@ void	*watchers_phil(void *args)
     {
         if (who_died(dinner_info, dinner_info -> death))
             return (NULL);
+        usleep(100);
     }
     return (NULL);
 }
