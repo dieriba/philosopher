@@ -12,14 +12,17 @@ SRCS		=   ./philo/srcs/initialization.c \
 
 SRCS_BONUS	= 	./philo_bonus/srcs/initialization.c \
 				./philo_bonus/srcs/philo.c \
-				./philo_bonus/srcs/threading.c \
+				./philo_bonus/srcs/forking.c \
 				./philo_bonus/srcs/state.c \
 				./philo_bonus/srcs/death.c \
 				./philo_bonus/srcs/time.c \
-				./philo_bonus/srcs/mutex.c \
+				./philo_bonus/srcs/semaphore.c \
+				./philo_bonus/srcs/threading.c \
 				./philo_bonus/srcs/print.c \
 				./philo_bonus/srcs/syscall.c \
 				./philo_bonus/srcs/routine.c \
+				./philo_bonus/srcs/exit.c \
+
 
 OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
 

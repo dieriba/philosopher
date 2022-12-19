@@ -1,35 +1,34 @@
 #include "philo.h"
 
-int	death(t_philo *philo)
+void	death(t_philo *philo)
 {
-	pthread_mutex_lock(&philo -> dinner_info -> keeper);
+	lock(philo -> dinner_info, philo -> keeper);
 	philo -> keeper_set = 1;
 	if (philo -> dinner_info -> num_of_dead_phil)
 	{
-		unlock_mutexes(philo);
-		return (1);
+		unlock_sem(philo);
+		exit(1);
     }
 	philo -> keeper_set = 0;
-	pthread_mutex_unlock(&philo -> dinner_info -> keeper);
-	return (0);
+	unlock(philo -> dinner_info, philo -> keeper);
 }
 
 int	condition_met(t_info *dinner_info)
 {
 	if (dinner_info -> num_of_dead_phil )
 		return (1);
-	pthread_mutex_lock(&dinner_info -> keeper);
+	lock(dinner_info, dinner_info -> keeper);
 	if ((dinner_info -> leaved_guests 
         == dinner_info -> guests_numbers))
     {
-        pthread_mutex_unlock(&dinner_info -> keeper);
+        unlock(dinner_info, dinner_info -> keeper);
         return (1);
     }
-    pthread_mutex_unlock(&dinner_info -> keeper);
+    unlock(dinner_info, dinner_info -> keeper);
     return (0);
 }
 
-int	who_died(t_info *dinner_info, t_death *death)
+int	who_died(t_info *philo)
 {
     int		i;
     long	time;
@@ -39,18 +38,18 @@ int	who_died(t_info *dinner_info, t_death *death)
     i = -1;
     while (++i < dinner_info -> guests_numbers)
     {
-        pthread_mutex_lock(&death[i].death);
+        lock(philo -> dinner_info, philo -> death);
         time = current_time() - convert_ts_to_ms(&death[i]);
-        pthread_mutex_unlock(&death[i].death);
+        unlock(philo -> dinner_info, philo -> death);
         if (time >= dinner_info -> time_to_die)
         {
-            pthread_mutex_lock(&dinner_info -> keeper);
+            lock(philo -> dinner_info, dinner_info -> keeper);
             dinner_info -> num_of_dead_phil = 1;
-            pthread_mutex_unlock(&dinner_info -> keeper);
-            pthread_mutex_lock(&dinner_info -> print);
+            unlock(philo -> dinner_info, dinner_info -> keeper);
+            lock(philo -> dinner_info, dinner_info -> print);
 	        printf("%li %li died\n", current_time(), philo[i].guest_number + 1);
 			// printf("Philosopher %ld is dead at : %f\n", philo[i].guest_number, ((float)time/1000));
-            pthread_mutex_unlock(&dinner_info -> print);
+            unlock(philo -> dinner_info, dinner_info -> print);
         }
         if (condition_met(dinner_info))
             return (1);
