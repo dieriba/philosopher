@@ -12,7 +12,7 @@ void	free_struct(t_info *dinner_info)
 		free(dinner_info -> sem_death);
 }
 
-void	destroy_all_sem(t_info *dinner_info)
+void	close_sems(t_info *dinner_info)
 {
 	close_sem(dinner_info, dinner_info -> forks);
 	close_sem(dinner_info, dinner_info -> keeper);
@@ -20,6 +20,17 @@ void	destroy_all_sem(t_info *dinner_info)
 	close_sem(dinner_info, dinner_info -> phil_dead);
 	close_sem(dinner_info, dinner_info -> plate);
 	clean_sem_tabs(dinner_info);
+}
+
+void	destroy_sems(t_info *dinner_info)
+{
+	size_t	i;
+	char	**tab;
+
+	tab = dinner_info -> sem_names;
+	i = -1;
+	while (tab[++i])
+		destroy_sem(dinner_info, tab[i]);
 	destroy_sem(dinner_info, SEM_FORKS);
 	destroy_sem(dinner_info, SEM_KEEPER);
 	destroy_sem(dinner_info, SEM_PRINT);
@@ -27,9 +38,12 @@ void	destroy_all_sem(t_info *dinner_info)
 	destroy_sem(dinner_info, SEM_PLATE_EATEN);
 }
 
-void	clean_struct(t_info *dinner_info)
+void	clean_struct(t_info *dinner_info, int main)
 {
-	destroy_all_sem(dinner_info);
+	close_sems(dinner_info);
+	if (main)
+		destroy_sems(dinner_info);
+	(void)main;
 	free_struct(dinner_info);
 }
 
@@ -40,12 +54,12 @@ void	ft_usleep(int time_to_sleep)
 
 	to_iter = 0;
 	mod = time_to_sleep % 10;
-	if (!mod)
-		to_iter = mod / 10;
-	while (!mod && to_iter)
+	to_iter = mod / 10;
+	while (to_iter)
 	{
 		usleep(10);
 		to_iter /= 10;
 	}
-	usleep(time_to_sleep);
+	if (mod)
+		usleep(mod);
 }

@@ -13,23 +13,33 @@ int	thinking(t_philo *philo)
     return (0);
 }
 
-void	*routine(void *args)
+void	routine(t_philo *philo)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)(args);
     if (philo -> guest_number % 2)
-        usleep(300);
+        usleep(philo -> time_to_eat * 0.7);
     while (1)
     {
-        if (takes_forks(philo))
-            break ;
-        if (eating(philo))
-            break ;
+        takes_forks(philo);
+        eating(philo);
         release_forks(philo);
-        if (sleeping(philo) || thinking(philo))
-            break ;
+        sleeping(philo);
+        thinking(philo);
     }
-	unlock_mutexes(philo);
-	return (NULL);
+}
+
+void lets_phil_in(t_info *dinner_info, t_philo *philo)
+{
+    int i;
+
+    i = philo -> guest_number;
+    gettimeofday(&philo -> last_dinner, NULL);
+    philo -> death_sem = dinner_info -> sem_death[i];
+    if (pthread_create(&philo -> watcher, NULL, watchers_phil, philo))
+        print_and_exit(dinner_info, "Failed thread creation\n", 1);
+    routine(philo);
+    if (pthread_join(philo -> watcher, NULL))
+        print_and_exit(dinner_info, "Failed joining thread\n", 1);
 }

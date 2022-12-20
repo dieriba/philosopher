@@ -1,69 +1,55 @@
 #include "philo.h"
 
-int	takes_right(t_philo *philo)
+void	takes_right(t_philo *philo)
 {
 	lock(philo -> dinner_info, philo -> forks);
-	philo -> right_f = 1;
 	print_state(philo, "takes a fork");
     return (0);
 }
 
-int	takes_left(t_philo *philo)
+void	takes_left(t_philo *philo)
 {
 	lock(philo -> dinner_info, philo -> forks);
-    philo -> left_f = 1;
     print_state(philo, "takes a fork");
     return (0);
 }
 
-int	takes_forks(t_philo *philo)
+void	takes_forks(t_philo *philo)
 {
     if (!(philo -> guest_number % 2))
     {
-        if (takes_left(philo))
-            return (1);
-        if (takes_right(philo))
-            return (1);
+        takes_left(philo);
+        takes_right(philo);
     }
     else
     {
-        if (takes_right(philo))
-            return (1);
-        if (takes_left(philo))
-            return (1);
+        takes_right(philo);
+        takes_left(philo);
     }
     return (0);
 }
 
 void	release_forks(t_philo *philo)
 {
-    if (philo -> left_f)
-        unlock(philo -> dinner_info, philo -> forks);
-    philo -> left_f = 0;
-    if (philo -> right_f)
-	    unlock(philo -> dinner_info, philo -> forks);
-    philo -> right_f = 0;
+    unlock(philo -> dinner_info, philo -> forks);
+	unlock(philo -> dinner_info, philo -> forks);
 }
 
-int	eating(t_philo *philo)
+void	eating(t_philo *philo)
 {
-    t_death *death;
     t_info  *dinner_info;
 
     dinner_info = philo -> dinner_info;
     if (print_state(philo, "is eating"))
         return (1);
-    usleep(philo -> time_to_eat);
-    lock(dinner_info, philo -> death);
+    usleep(philo -> time_to_eat * 1000);
+    lock(dinner_info, philo -> death_sem);
     gettimeofday(philo -> last_dinner, NULL);
-    unlock(dinner_info, philo -> death);
+    unlock(dinner_info, philo -> death_sem);
     philo -> eaten_dinner++;
     if (philo -> eaten_dinner == philo -> min_dinner)
     {
-        lock(dinner_info -> info, philo -> keeper);
-        philo -> dinner_info -> leaved_guests++;
-        lock(dinner_info -> info, philo -> keeper);
-        unlock_sem(philo);
+        release_forks(philo);
+        unlock(dinner_info, philo -> dinner_info -> plate);
     }
-    return (0);
 }

@@ -26,16 +26,11 @@ void	close_sem(t_info *dinner_info, sem_t *sem)
 
 void	clean_sem_tabs(t_info *dinner_info)
 {
-	int	i;
+	size_t		i;
 	sem_t	**sem;
-	char	**tab;
-	(void)tab;
-	tab = dinner_info -> sem_names;
+
 	sem = dinner_info -> sem_death;
 	i = -1;
-	while (++i < dinner_info -> guests_numbers)
+	while (sem[++i])
 		close_sem(dinner_info, sem[i]);
-	i = -1;
-	while (tab[++i])
-		destroy_sem(dinner_info, tab[i]);
 }

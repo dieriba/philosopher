@@ -38,6 +38,7 @@ typedef struct t_philo
 	int				time_to_eat;
 	int				min_dinner;
 	int				guest_number;
+	sem_t			*death_sem;
 	t_info			*dinner_info;
 }	t_philo;
 
@@ -74,13 +75,13 @@ void	lock(t_info *dinner_info, sem_t *sem);
 void	ft_usleep(int time_to_sleep);
 void	create_sem(t_info *dinner_info, sem_t **sem, char *name, unsigned int val);
 void	clean_sem_tabs(t_info *dinner_info);
-void	clean_struct(t_info *dinner_info);
+void	clean_struct(t_info *dinner_info, int main);
 void	initialization(t_info *dinner_info, int argc, char **argv);
+void lets_phil_in(t_info *dinner_info, t_philo *philo);
 
-int		eating(t_philo *philo);
-int		takes_forks(t_philo *philo);
-int		start_and_joining_threads(t_info *dinner_info);
-int		death(t_philo *philo);
+void		eating(t_philo *philo);
+void		takes_forks(t_philo *philo);
+void		death(t_philo *philo);
 //int		print_state(t_philo *philo, char *state);
 //void    lets_phil_in(t_info *dinner_info, t_philo *philo);
 

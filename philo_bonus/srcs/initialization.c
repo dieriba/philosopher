@@ -51,10 +51,10 @@ void	malloc_struct(t_info *dinner_info)
 	dinner_info -> philo_pid = malloc(sizeof(pid_t) * dinner_info -> guests_numbers);
 	if (!dinner_info -> philo_pid)
 		print_and_exit(dinner_info, "Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2);
-	dinner_info -> sem_names = ft_calloc(sizeof(char*), (dinner_info -> guests_numbers + 1));
+	dinner_info -> sem_names = ft_calloc(sizeof(char *), (dinner_info -> guests_numbers + 1));
 	if (!dinner_info -> sem_names)
 		print_and_exit(dinner_info, "Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2);
-	dinner_info -> sem_death = malloc(sizeof(sem_t*) * (dinner_info -> guests_numbers + 1));
+	dinner_info -> sem_death = ft_calloc(sizeof(sem_t *), (dinner_info -> guests_numbers + 1));
 	if (!dinner_info -> sem_death)
 		print_and_exit(dinner_info, "Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2);
 }
