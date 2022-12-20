@@ -49,7 +49,7 @@ typedef struct t_info
 	sem_t			*keeper;
 	sem_t			*print;
 	sem_t			*plate;
-	sem_t			*phil_dead;
+	sem_t			*philo_dead;
 	pid_t			*philo_pid;
 	pthread_t		watchers;
 	int				guests_numbers;
@@ -77,13 +77,14 @@ void	create_sem(t_info *dinner_info, sem_t **sem, char *name, unsigned int val);
 void	clean_sem_tabs(t_info *dinner_info);
 void	clean_struct(t_info *dinner_info, int main);
 void	initialization(t_info *dinner_info, int argc, char **argv);
-void lets_phil_in(t_info *dinner_info, t_philo *philo);
+void 	lets_phil_in(t_info *dinner_info, t_philo *philo);
+void    create_threads(t_info *dinner_info, pthread_t *thread, void *args);
 
-void		eating(t_philo *philo);
-void		takes_forks(t_philo *philo);
-void		death(t_philo *philo);
-//int		print_state(t_philo *philo, char *state);
-//void    lets_phil_in(t_info *dinner_info, t_philo *philo);
+int		eating(t_philo *philo);
+void	takes_forks(t_philo *philo);
+void	print_state(t_philo *philo, char *state);
+void    lets_phil_in(t_info *dinner_info, t_philo *philo);
 
+long	convert_to_ms(struct timeval last_dinner);
 long	current_time(void);
 #endif

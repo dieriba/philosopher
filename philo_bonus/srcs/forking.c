@@ -16,6 +16,8 @@ void    wait_for_all_childs(t_info *dinner_info)
 
 void    end_dinner(t_info *dinner_info)
 {
+    if (pthread_create(&dinner_info -> watcher, NULL, watch, philo))
+        print_and_exit(dinner_info, "Failed thread creation\n", 1);
     lock(dinner_info, dinner_info -> phil_dead);
     clean_struct(dinner_info, 1);
 }
