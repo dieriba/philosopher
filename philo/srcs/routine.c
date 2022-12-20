@@ -31,7 +31,7 @@ void	*routine(void *args)
 
 	philo = (t_philo *)(args);
 	if (philo -> guest_number % 2)
-		usleep(300);
+		usleep(philo -> time_to_eat * 0.8);
 	while (1)
 	{
 		if (takes_forks(philo))
