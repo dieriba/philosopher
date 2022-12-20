@@ -46,10 +46,10 @@ void    set_sem_tabs(t_info *dinner_info)
 
 void	init_semaphores(t_info *dinner_info)
 {
-    create_sem(dinner_info, &dinner_info -> forks, SEM_FORKS, dinner_info -> guests_numbers);
-    create_sem(dinner_info, &dinner_info -> keeper, SEM_KEEPER, 1);
-    create_sem(dinner_info, &dinner_info -> print, SEM_PRINT, 1);
-    create_sem(dinner_info, &dinner_info -> plate, SEM_PLATE_EATEN, 0);
-    create_sem(dinner_info, &dinner_info -> phil_dead, SEM_PHIL_DEAD, 0);
-    set_sem_tabs(dinner_info);
+	create_sem(dinner_info, &dinner_info -> forks, SEM_FORKS, dinner_info -> guests_numbers);
+	create_sem(dinner_info, &dinner_info -> keeper, SEM_KEEPER, 1);
+	create_sem(dinner_info, &dinner_info -> print, SEM_PRINT, 1);
+	create_sem(dinner_info, &dinner_info -> plate, SEM_PLATE_EATEN, 0);
+	create_sem(dinner_info, &dinner_info -> end, SEM_END, 0);
+	set_sem_tabs(dinner_info);
 }

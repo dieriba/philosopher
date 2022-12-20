@@ -16,6 +16,7 @@ int	sleeping(t_philo *philo)
 {
 	print_state(philo, "is sleeping");
 	usleep(philo -> time_to_sleep * 1000);
+	
 	return (0);
 }
 
@@ -31,7 +32,7 @@ void	*routine(void *args)
 
 	philo = (t_philo *)(args);
 	if (philo -> guest_number % 2)
-		usleep(philo -> time_to_eat * 0.8);
+		usleep(philo -> time_to_sleep * 1000);
 	while (1)
 	{
 		if (takes_forks(philo))

@@ -17,7 +17,7 @@ void	close_sems(t_info *dinner_info)
 	close_sem(dinner_info, dinner_info -> forks);
 	close_sem(dinner_info, dinner_info -> keeper);
 	close_sem(dinner_info, dinner_info -> print);
-	close_sem(dinner_info, dinner_info -> phil_dead);
+	close_sem(dinner_info, dinner_info -> end);
 	close_sem(dinner_info, dinner_info -> plate);
 	clean_sem_tabs(dinner_info);
 }
@@ -34,7 +34,7 @@ void	destroy_sems(t_info *dinner_info)
 	destroy_sem(dinner_info, SEM_FORKS);
 	destroy_sem(dinner_info, SEM_KEEPER);
 	destroy_sem(dinner_info, SEM_PRINT);
-	destroy_sem(dinner_info, SEM_PHIL_DEAD);
+	destroy_sem(dinner_info, SEM_END);
 	destroy_sem(dinner_info, SEM_PLATE_EATEN);
 }
 
@@ -43,7 +43,6 @@ void	clean_struct(t_info *dinner_info, int main)
 	close_sems(dinner_info);
 	if (main)
 		destroy_sems(dinner_info);
-	(void)main;
 	free_struct(dinner_info);
 }
 

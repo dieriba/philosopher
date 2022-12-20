@@ -1,6 +1,6 @@
 #include "philo.h"
 
-int	has_died(t_info *philo)
+int	has_died(t_philo *philo)
 {
     t_info* dinner_info;
     int		i;
@@ -11,13 +11,13 @@ int	has_died(t_info *philo)
     while (++i < dinner_info -> guests_numbers)
     {
         lock(dinner_info, philo -> death_sem);
-        time = current_time() - convert_ts_to_ms(philo -> last_dinner);
+        time = current_time() - convert_to_ms(philo -> last_dinner);
         unlock(dinner_info, philo -> death_sem);
-        if (time >= philo -> time_to_die)
+        if (time >= dinner_info -> time_to_die)
         {
             lock(dinner_info, dinner_info -> print);
-	        printf("%li %li died\n", current_time(), philo[i].guest_number + 1);
-            unlock(dinner_info, dinner_info -> philo_dead);
+	        printf("%li %i died\n", current_time(), philo[i].guest_number + 1);
+            unlock(dinner_info, dinner_info -> end);
             return (1);
         }
     }

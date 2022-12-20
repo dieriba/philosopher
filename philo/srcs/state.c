@@ -16,7 +16,7 @@ int	takes_right(t_philo *philo)
 {
 	pthread_mutex_lock(philo -> right);
 	philo -> right_f = 1;
-	print_state(philo, "has taken a fork");
+	print_state(philo, "has taken right fork");
 	return (0);
 }
 
@@ -24,7 +24,7 @@ int	takes_left(t_philo *philo)
 {
 	pthread_mutex_lock(philo -> left);
 	philo -> left_f = 1;
-	print_state(philo, "has taken a fork");
+	print_state(philo, "has taken left fork");
 	return (0);
 }
 

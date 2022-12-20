@@ -20,7 +20,7 @@
 # define SEM_KEEPER "/sem_keeper"
 # define SEM_PRINT "/sem_print"
 # define SEM_DEATH "/sem_death_"
-# define SEM_PHIL_DEAD "/sem_phil_dead"
+# define SEM_END "/sem_phil_dead"
 # define SEM_PLATE_EATEN "/sem_phil_plate_eaten"
 
 typedef struct t_info	t_info;
@@ -49,7 +49,7 @@ typedef struct t_info
 	sem_t			*keeper;
 	sem_t			*print;
 	sem_t			*plate;
-	sem_t			*philo_dead;
+	sem_t			*end;
 	pid_t			*philo_pid;
 	pthread_t		watchers;
 	int				guests_numbers;
@@ -66,7 +66,7 @@ typedef struct t_info
 void    print_and_exit(t_info *dinner_info, char *err_msg, int code);
 void	*watchers_phil(void *args);
 void	free_struct(t_info *dinner_info);
-void    *routine(void *args);
+void    routine(t_philo *philo);
 void	close_sem(t_info *dinner_info, sem_t *sem);
 void	destroy_sem(t_info *dinner_info, char *name);
 void	init_semaphores(t_info *dinner_info);
@@ -78,7 +78,8 @@ void	clean_sem_tabs(t_info *dinner_info);
 void	clean_struct(t_info *dinner_info, int main);
 void	initialization(t_info *dinner_info, int argc, char **argv);
 void 	lets_phil_in(t_info *dinner_info, t_philo *philo);
-void    create_threads(t_info *dinner_info, pthread_t *thread, void *args);
+void    *watch(void *args);
+void	release_forks(t_philo *philo);
 
 int		eating(t_philo *philo);
 void	takes_forks(t_philo *philo);

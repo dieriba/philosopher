@@ -15,10 +15,6 @@ int	thinking(t_philo *philo)
 
 void	routine(t_philo *philo)
 {
-	t_philo	*philo;
-
-	philo = (t_philo *)(args);
-
     if (philo -> guest_number % 2)
         usleep(philo -> time_to_eat * 0.7);
     while (1)

@@ -19,6 +19,10 @@ SRCS_BONUS	= 	./philo_bonus/srcs/initialization.c \
 				./philo_bonus/srcs/print.c \
 				./philo_bonus/srcs/syscall.c \
 				./philo_bonus/srcs/exit.c \
+				./philo_bonus/srcs/threading.c \
+				./philo_bonus/srcs/death.c \
+				./philo_bonus/srcs/routine.c \
+				./philo_bonus/srcs/state.c \
 
 
 OBJS_BONUS	= $(SRCS_BONUS:.c=.o)

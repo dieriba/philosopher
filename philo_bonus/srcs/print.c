@@ -1,6 +1,6 @@
 #include "philo.h"
 
-int	print_state(t_philo *philo, char *state)
+void	print_state(t_philo *philo, char *state)
 {
 	t_info	*dinner_info;
 	int		dead;
@@ -10,5 +10,4 @@ int	print_state(t_philo *philo, char *state)
 	lock(dinner_info, dinner_info -> print);
 	printf("%li %i %s\n", current_time(), philo -> guest_number + 1, state);
 	unlock(dinner_info, dinner_info -> print);
-	return (0);
 }

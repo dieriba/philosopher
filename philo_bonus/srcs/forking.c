@@ -2,8 +2,8 @@
 
 void    wait_for_all_childs(t_info *dinner_info)
 {
-    int     i;
-    pid_t   pid;
+    int		i;
+    pid_t	pid;
 
     i = -1;
     while (++i < dinner_info -> guests_numbers)
@@ -16,17 +16,18 @@ void    wait_for_all_childs(t_info *dinner_info)
 
 void    end_dinner(t_info *dinner_info)
 {
-    if (pthread_create(&dinner_info -> watcher, NULL, watch, philo))
+    if (pthread_create(&dinner_info -> watchers, NULL, watch, dinner_info))
         print_and_exit(dinner_info, "Failed thread creation\n", 1);
-    lock(dinner_info, dinner_info -> phil_dead);
+    lock(dinner_info, dinner_info -> end);
+    //clear_process(dinner_info);
     clean_struct(dinner_info, 1);
 }
 
 void    forking(t_info *dinner_info)
 {
-    int     i;
-    t_philo *philo;
-    pid_t   pid_ret;
+    int		i;
+    t_philo	*philo;
+    pid_t	pid_ret;
 
     i = -1;
     while (++i < dinner_info -> guests_numbers)
@@ -37,7 +38,6 @@ void    forking(t_info *dinner_info)
         philo = &dinner_info -> philosophers[i];
         if (pid_ret == 0)
             break ;
-        //kill all fork if fork failed
         dinner_info -> philo_pid[i] = pid_ret;
     }
     if (pid_ret == 0)
