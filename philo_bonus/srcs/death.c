@@ -48,7 +48,6 @@ int	who_died(t_info *philo)
             unlock(philo -> dinner_info, dinner_info -> keeper);
             lock(philo -> dinner_info, dinner_info -> print);
 	        printf("%li %li died\n", current_time(), philo[i].guest_number + 1);
-			// printf("Philosopher %ld is dead at : %f\n", philo[i].guest_number, ((float)time/1000));
             unlock(philo -> dinner_info, dinner_info -> print);
         }
         if (condition_met(dinner_info))
