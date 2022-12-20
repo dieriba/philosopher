@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtoure <dtoure@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/20 00:38:51 by dtoure            #+#    #+#             */
+/*   Updated: 2022/12/20 00:38:51 by dtoure           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
@@ -52,7 +63,7 @@ typedef struct t_info
 
 typedef struct t_death
 {
-    struct timeval	last_dinner;
+	struct timeval	last_dinner;
 	pthread_mutex_t	death;
 	int				dead;
 }	t_death;
@@ -60,7 +71,7 @@ typedef struct t_death
 void	release_forks(t_philo *philo);
 void	*watchers_phil(void *args);
 void	free_struct(t_info *dinner_info);
-void    *routine(void *args);
+void	*routine(void *args);
 
 int		unlock_mutexes(t_philo *philo);
 int		eating(t_philo *philo);
