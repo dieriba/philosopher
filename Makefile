@@ -13,14 +13,11 @@ SRCS		=   ./philo/srcs/initialization.c \
 SRCS_BONUS	= 	./philo_bonus/srcs/initialization.c \
 				./philo_bonus/srcs/philo.c \
 				./philo_bonus/srcs/forking.c \
-				./philo_bonus/srcs/state.c \
-				./philo_bonus/srcs/death.c \
 				./philo_bonus/srcs/time.c \
 				./philo_bonus/srcs/semaphore.c \
-				./philo_bonus/srcs/threading.c \
+				./philo_bonus/srcs/semaphore_utils.c \
 				./philo_bonus/srcs/print.c \
 				./philo_bonus/srcs/syscall.c \
-				./philo_bonus/srcs/routine.c \
 				./philo_bonus/srcs/exit.c \
 
 
@@ -43,6 +40,15 @@ all:		$(PHILO)
 .c.o :	
 			$(CC) -g3 $(CFLAGS) -c $< -o $@
 
+bonus:		$(OBJS_BONUS)
+			make -C ./libft/ft_printf
+			cp ./libft/ft_printf/libprintf.a ./lib
+			make -C ./libft
+			cp ./libft/libft.a ./lib
+			make -C ./libft/get_next_line
+			cp ./libft/get_next_line/libgnl.a ./lib
+			$(CC) $(CFLAGS) ${OBJS_BONUS} -g3 -L./lib -lft -lpthread -lprintf -lgnl -o $(PHILO)
+			
 $(PHILO):	${OBJS}
 			make -C ./libft/ft_printf
 			cp ./libft/ft_printf/libprintf.a ./lib
@@ -52,14 +58,6 @@ $(PHILO):	${OBJS}
 			cp ./libft/get_next_line/libgnl.a ./lib
 			$(CC) $(CFLAGS) ${OBJS} -g3 -L./lib -lft -lpthread -lprintf -lgnl -o $(PHILO)
 
-bonus:		$(OBJS_BONUS)
-			make -C ./libft/ft_printf
-			cp ./libft/ft_printf/libprintf.a ./lib
-			make -C ./libft
-			cp ./libft/libft.a ./lib
-			make -C ./libft/get_next_line
-			cp ./libft/get_next_line/libgnl.a ./lib
-			$(CC) $(CFLAGS) ${OBJS_BONUS} -g3 -L./lib -lft -lpthread -lprintf -lgnl -o $(PHILO)
 
 clean:
 			rm -rf $(OBJS)

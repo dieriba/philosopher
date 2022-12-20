@@ -2,14 +2,13 @@
 
 int	print_state(t_philo *philo, char *state)
 {
-	if (sem_wait(philo -> print))
-		print_and_exit(philo -> dinner_info, "error with sem wait", 1);
+	t_info	*dinner_info;
+
+	dinner_info = philo -> dinner_info;
+	lock(dinner_info, dinner_info -> print);
 	philo -> print = 1;
-	if (death(philo))
-		return (1);
-	printf("%li %li %s\n", current_time(), philo -> guest_number + 1, state);
+	printf("%li %i %s\n", current_time(), philo -> guest_number + 1, state);
 	philo -> print = 0;
-	if (sem_post(philo -> print))
-		print_and_exit(philo -> dinner_info, "error with sem post", 1);
+	unlock(dinner_info, dinner_info -> print);
 	return (0);
 }

@@ -1,53 +1,55 @@
 #include "philo.h"
 
-void	lock(t_info *dinner_info, sem_t *sem)
+void	create_sem(t_info *dinner_info, sem_t **sem, char *name, unsigned int val)
 {
-	if (sem_wait(sem))
-		print_and_exit(dinner_info, "error with sem_wait\n", 1);
+	*sem = sem_open(name, O_CREAT | O_EXCL, 0644, val);
+	if (errno == EEXIST)
+	{
+		sem_unlink(name);
+		*sem = sem_open(name, O_CREAT | O_EXCL, 0644, val);
+	}
+	if (*sem == SEM_FAILED)
+		print_and_exit(dinner_info, "semaphore (syscall failed)\n", 1);
 }
 
-void	unlock(t_info *dinner_info, sem_t *sem)
+void    set_sem_name(t_info *dinner_info)
 {
-	if (sem_post(sem))
-		print_and_exit(dinner_info, "error with sem_post\n", 1);
+    int  i;
+    char    **tab;
+    char    *num;
+
+    tab = dinner_info -> sem_names;
+    i = -1;
+    while (++i < dinner_info -> guests_numbers)
+    {
+        num = ft_itoa(i);
+        tab[i] = ft_strjoin(SEM_DEATH, num);
+        if (!tab[i])
+            print_and_exit(dinner_info, "Error (malloc)(function : set_sem_name)\n", 2);
+        free(num);
+    }
 }
 
-void	destroy_sem(t_info *dinner_info)
+void    set_sem_tabs(t_info *dinner_info)
 {
-	if (sem_unlink(dinner_info -> forks) < 0)
-		print_and_exit("Semaphore unlink failed\n", 1);
-	if (sem_unlink(dinner_info -> keeper) < 0)
-		print_and_exit("Semaphore unlink failed\n", 1);
-	if (sem_unlink(dinner_info -> print) < 0)
-		print_and_exit("Semaphore unlink failed\n", 1);
-	if (sem_unlink(dinner_info -> error) < 0)
-		print_and_exit("Semaphore unlink failed\n", 1);
-}
+    int  i;
+    sem_t   **sem;
+    char    **tab;
 
-void	close_sem(t_info *dinner_info)
-{
-	if (sem_close(dinner_info -> forks) < 0)
-		print_and_exit("Semaphore close failled\n", 1);
-	if (sem_close(dinner_info -> keeper) < 0)
-		print_and_exit("Semaphore close failled\n", 1);
-	if (sem_close(dinner_info -> print) < 0)
-		print_and_exit("Semaphore close failled\n", 1);
-	if (sem_close(dinner_info -> error) < 0)
-		print_and_exit("Semaphore close failled\n", 1);
+    set_sem_name(dinner_info);
+    tab = dinner_info -> sem_names;
+    sem = dinner_info -> sem_death;
+    i = -1;
+    while (tab[++i])
+        create_sem(dinner_info, &sem[i], tab[i], 1);
 }
 
 void	init_semaphores(t_info *dinner_info)
 {
-	dinner_info -> forks = sem_open(SEM_FORKS, O_CREAT, 0644, dinner_info -> philosophers);
-	if (dinner_info -> forks == SEM_FAILED)
-		print_and_exit("semaphore (syscall failed)\n", 1);
-	dinner_info -> keeper = sem_open(SEM_KEEPER, O_CREAT, 0644, 1);
-	if (dinner_info -> keeper == SEM_FAILED)
-		print_and_exit("semaphore (syscall failed)\n", 1);
-	dinner_info -> print = sem_open(SEM_PRINT, O_CREAT, 0644, 1);
-	if (dinner_info -> print == SEM_FAILED)
-		print_and_exit("semaphore (syscall failed)\n", 1);
-	dinner_info -> error = sem_open(SEM_ERROR, O_CREAT, 0644, 0)
-	if (dinner_info -> error == SEM_FAILED)
-		print_and_exit("semaphore (syscall failed)\n", 1);
+    create_sem(dinner_info, &dinner_info -> forks, SEM_FORKS, dinner_info -> guests_numbers);
+    create_sem(dinner_info, &dinner_info -> keeper, SEM_KEEPER, 1);
+    create_sem(dinner_info, &dinner_info -> print, SEM_PRINT, 1);
+    create_sem(dinner_info, &dinner_info -> plate, SEM_PLATE_EATEN, 0);
+    create_sem(dinner_info, &dinner_info -> phil_dead, SEM_PHIL_DEAD, 0);
+    set_sem_tabs(dinner_info);
 }

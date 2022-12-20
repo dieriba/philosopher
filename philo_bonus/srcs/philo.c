@@ -7,6 +7,6 @@ int	main(int argc, char **argv)
 	if (argc < 5)
 		return (1);
 	initialization(&dinner_info, argc, argv);
-	free_struct(&dinner_info);
+	clean_struct(&dinner_info);
 	return (0);
 }

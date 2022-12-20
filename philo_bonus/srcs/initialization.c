@@ -2,13 +2,10 @@
 
 static void	init_struct(t_info *dinner_info, char **argv)
 {
-	dinner_info -> num_of_dead_phil = 0;
-	dinner_info -> keeper_set = 0;
 	dinner_info -> guests_numbers = ft_atoi(argv[1]);
 	dinner_info -> time_to_die = ft_atoi(argv[2]);
 	dinner_info -> time_to_eat = ft_atoi(argv[3]);
 	dinner_info -> time_to_sleep = ft_atoi(argv[4]);
-	dinner_info -> leaved_guests = 0;
 }
 
 static void	initialize_philo(t_info *dinner_info)
@@ -18,13 +15,7 @@ static void	initialize_philo(t_info *dinner_info)
 	i = -1;
 	while (++i < dinner_info -> guests_numbers)
 	{
-		dinner_info -> philosophers[i].pid = 0;
-		dinner_info -> philosophers[i].forks = dinner_info -> forks;
-		dinner_info -> philosophers[i].keeper = dinner_info -> keeper;
-		dinner_info -> philosophers[i].print = dinner_info -> print;
 		dinner_info -> philosophers[i].keeper_set = 0;
-		dinner_info -> philosophers[i].leaved = 0;
-		dinner_info -> philosophers[i].is_dead = 0;
 		dinner_info -> philosophers[i].guest_number = i;
 		dinner_info -> philosophers[i].time_to_eat = dinner_info -> time_to_eat;
 		dinner_info -> philosophers[i].time_to_sleep = dinner_info -> time_to_sleep;
@@ -56,19 +47,24 @@ void	malloc_struct(t_info *dinner_info)
 {
     dinner_info -> philosophers = malloc(sizeof(t_philo) * dinner_info -> guests_numbers);
 	if (!dinner_info -> philosophers)
-		print_and_exit("Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2);
-	dinner_info -> philo_pid = ft_calloc(sizeof(pid_t) * dinner_info -> guests_numbers);
+		print_and_exit(dinner_info, "Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2);
+	dinner_info -> philo_pid = malloc(sizeof(pid_t) * dinner_info -> guests_numbers);
 	if (!dinner_info -> philo_pid)
-		print_and_exit("Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2);
-	return (0);
+		print_and_exit(dinner_info, "Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2);
+	dinner_info -> sem_names = ft_calloc(sizeof(char*), (dinner_info -> guests_numbers + 1));
+	if (!dinner_info -> sem_names)
+		print_and_exit(dinner_info, "Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2);
+	dinner_info -> sem_death = malloc(sizeof(sem_t*) * (dinner_info -> guests_numbers + 1));
+	if (!dinner_info -> sem_death)
+		print_and_exit(dinner_info, "Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2);
 }
 
 void	initialization(t_info *dinner_info, int argc, char **argv)
 {
 	memset(dinner_info, 0, sizeof(t_info));
-	init_semaphores(dinner_info);
 	init_struct(dinner_info, argv);
 	check_error(dinner_info, argc, argv);
 	malloc_struct(dinner_info);
+	init_semaphores(dinner_info);
 	initialize_philo(dinner_info);
 }
