@@ -6,6 +6,7 @@ static void	init_struct(t_info *dinner_info, char **argv)
 	dinner_info -> time_to_die = ft_atoi(argv[2]);
 	dinner_info -> time_to_eat = ft_atoi(argv[3]);
 	dinner_info -> time_to_sleep = ft_atoi(argv[4]);
+	dinner_info -> end_ = 0;
 }
 
 static void	initialize_philo(t_info *dinner_info)

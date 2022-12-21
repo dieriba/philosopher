@@ -19,7 +19,11 @@ void    end_dinner(t_info *dinner_info)
     if (pthread_create(&dinner_info -> watchers, NULL, watch, dinner_info))
         print_and_exit(dinner_info, "Failed thread creation\n", 1);
     lock(dinner_info, dinner_info -> end);
-    //clear_process(dinner_info);
+    dinner_info -> end_ = 1;
+    unlock(dinner_info, dinner_info -> plate);
+    unlock(dinner_info, dinner_info -> inform);
+    if (pthread_join(dinner_info -> watchers, NULL))
+        print_and_exit(dinner_info, "Failed joind thread\n", 1);
     clean_struct(dinner_info, 1);
 }
 
@@ -31,7 +35,7 @@ void    forking(t_info *dinner_info)
 
     i = -1;
     while (++i < dinner_info -> guests_numbers)
-    {   
+    {
         pid_ret = fork();
         if (pid_ret < 0)
             print_and_exit(dinner_info, "Error occured (fork())\n", 1);

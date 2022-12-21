@@ -37,6 +37,7 @@ typedef struct t_philo
 	int				time_to_eat;
 	int				min_dinner;
 	size_t			guest_number;
+	int				guests_numbers;
 	pthread_t		thread;
 	pthread_mutex_t	*right;
 	pthread_mutex_t	*left;

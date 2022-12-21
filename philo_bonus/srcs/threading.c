@@ -37,6 +37,9 @@ void    *watch(void *args)
 		plate++;
 		if (plate == dinner_info -> min_dinner)
 			unlock(dinner_info, dinner_info -> end);
+		lock(dinner_info, dinner_info -> inform);
+		if (dinner_info -> end_)
+			return (NULL);
     }
     return (NULL);
 }

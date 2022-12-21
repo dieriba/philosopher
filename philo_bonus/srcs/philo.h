@@ -17,10 +17,10 @@
 # include "../../libft/libft.h"
 
 # define SEM_FORKS "/sem_forks"
-# define SEM_KEEPER "/sem_keeper"
+# define SEM_INFORM "/sem_inform"
 # define SEM_PRINT "/sem_print"
 # define SEM_DEATH "/sem_death_"
-# define SEM_END "/sem_phil_dead"
+# define SEM_END "/sem_end"
 # define SEM_PLATE_EATEN "/sem_phil_plate_eaten"
 
 typedef struct t_info	t_info;
@@ -50,10 +50,12 @@ typedef struct t_info
 	sem_t			*print;
 	sem_t			*plate;
 	sem_t			*end;
+	sem_t			*inform;
 	pid_t			*philo_pid;
 	pthread_t		watchers;
 	int				guests_numbers;
 	int				min_dinner;
+	int				end_;
 	int				leaved_guests;
 	int				time_to_sleep;
 	int				time_to_eat;
@@ -80,6 +82,8 @@ void	initialization(t_info *dinner_info, int argc, char **argv);
 void 	lets_phil_in(t_info *dinner_info, t_philo *philo);
 void    *watch(void *args);
 void	release_forks(t_philo *philo);
+void    forking(t_info *dinner_info);
+void    clear_process(t_info *dinner_info);
 
 int		eating(t_philo *philo);
 void	takes_forks(t_philo *philo);

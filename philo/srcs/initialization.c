@@ -37,6 +37,7 @@ static void	initialize_philo(t_info *dinner_info)
 		philosophers[i].right_f = 0;
 		philosophers[i].leaved = 0;
 		philosophers[i].guest_number = i;
+		philosophers[i].guests_numbers = dinner_info -> guests_numbers;
 		philosophers[i].time_to_eat = dinner_info -> time_to_eat;
 		philosophers[i].time_to_sleep = dinner_info -> time_to_sleep;
 		philosophers[i].min_dinner = dinner_info -> min_dinner;

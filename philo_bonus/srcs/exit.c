@@ -7,3 +7,23 @@ void    print_and_exit(t_info *dinner_info, char *err_msg, int code)
         free_struct(dinner_info);
     exit(code);
 }
+
+void    clear_process(t_info *dinner_info)
+{
+    int     i;
+    pid_t   *tab;
+
+    tab = dinner_info -> philo_pid;
+    i = -1;
+    while (++i < dinner_info -> guests_numbers)
+    {
+        if (kill(tab[i], 0) < 0)
+        {
+            printf("Error\n");
+            continue ;
+        }
+        kill(tab[i], SIGKILL);
+        if (kill(tab[i], 0) < 0)
+            printf("Killed\n");
+    }
+}
