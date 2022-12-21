@@ -29,3 +29,8 @@ long	convert_ts_to_ms(t_death *death)
 	us = (death -> last_dinner.tv_usec) / 1000;
 	return (ms + us);
 }
+
+long	formated_time(long time)
+{
+	return (current_time() - time);
+}

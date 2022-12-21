@@ -17,3 +17,8 @@ long    convert_to_ms(struct timeval last_dinner)
 	us = (last_dinner.tv_usec) / 1000;
 	return (ms + us);
 }
+
+long	formated_time(long time)
+{
+	return (current_time() - time);
+}

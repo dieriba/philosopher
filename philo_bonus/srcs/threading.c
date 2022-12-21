@@ -5,6 +5,7 @@ void lets_phil_in(t_info *dinner_info, t_philo *philo)
     int i;
 
     i = philo -> guest_number;
+	dinner_info -> begin = current_time();
 	gettimeofday(&philo -> last_dinner, NULL);
 	philo -> death_sem = dinner_info -> sem_death[i];
 	if (pthread_create(&philo -> watcher, NULL, watchers_phil, philo))

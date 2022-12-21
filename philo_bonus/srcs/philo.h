@@ -54,6 +54,7 @@ typedef struct t_info
 	pid_t			*philo_pid;
 	pthread_t		watchers;
 	int				guests_numbers;
+	long			begin;
 	int				min_dinner;
 	int				end_;
 	int				leaved_guests;
@@ -90,6 +91,7 @@ void	takes_forks(t_philo *philo);
 void	print_state(t_philo *philo, char *state);
 void    lets_phil_in(t_info *dinner_info, t_philo *philo);
 
+long	formated_time(long time);
 long	convert_to_ms(struct timeval last_dinner);
 long	current_time(void);
 #endif

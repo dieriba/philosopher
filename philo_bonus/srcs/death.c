@@ -12,7 +12,7 @@ int	has_died(t_philo *philo)
     if (time >= dinner_info -> time_to_die)
     {
         lock(dinner_info, dinner_info -> print);
-	    printf("%li %i died\n", current_time(), philo -> guest_number + 1);
+	    printf("%011li %i died\n", formated_time(dinner_info -> begin), philo -> guest_number + 1);
         unlock(dinner_info, dinner_info -> end);
         return (1);
     }

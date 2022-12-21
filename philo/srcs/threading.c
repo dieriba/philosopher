@@ -52,6 +52,7 @@ int	start_and_joining_threads(t_info *dinner_info)
 	i = -1;
 	while (++i < dinner_info -> guests_numbers)
 		gettimeofday(&dinner_info -> death[i].last_dinner, NULL);
+	dinner_info -> begin = current_time();
 	if (create_threads(dinner_info) || join_threads(dinner_info))
 	{
 		free_struct(dinner_info);

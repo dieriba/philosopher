@@ -57,6 +57,7 @@ typedef struct t_info
 	int				time_to_sleep;
 	int				time_to_eat;
 	int				time_to_die;
+	long			begin;
 	pthread_t		watchers;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	keeper;
@@ -87,6 +88,7 @@ int		malloc_struct(t_info *dinner_info);
 int		clean_mutexes(t_info *dinner_info);
 int		initialize_mutexes(t_info *dinner_info);
 
+long	formated_time(long time);
 long	convert_ts_to_ms(t_death *death);
 long	current_time(void);
 #endif

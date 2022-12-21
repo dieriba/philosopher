@@ -59,7 +59,7 @@ int	who_died(t_info *dinner_info, t_death *death)
 			dinner_info -> num_of_dead_phil = 1;
 			pthread_mutex_unlock(&dinner_info -> keeper);
 			pthread_mutex_lock(&dinner_info -> print);
-			printf("%li %li died\n", current_time(), philo[i].guest_number + 1);
+			printf("%09li %li died\n", formated_time(dinner_info -> begin), philo[i].guest_number + 1);
 			pthread_mutex_unlock(&dinner_info -> print);
 		}
 		if (condition_met(dinner_info))
