@@ -20,7 +20,7 @@
 # include <sys/time.h>
 # include <string.h>
 # include <sys/time.h>
-# include "../../libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct t_philo		t_philo;
 typedef struct t_info		t_info;

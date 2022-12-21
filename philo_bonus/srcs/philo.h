@@ -24,6 +24,7 @@
 # define SEM_PLATE_EATEN "/sem_phil_plate_eaten"
 
 typedef struct t_info	t_info;
+typedef	struct	t_sem	t_sem;
 typedef struct t_philo
 {
 	pthread_t		watcher;
@@ -51,6 +52,7 @@ typedef struct t_info
 	sem_t			*plate;
 	sem_t			*end;
 	sem_t			*inform;
+	sem_t			**sem_death;
 	pid_t			*philo_pid;
 	pthread_t		watchers;
 	int				guests_numbers;
@@ -63,8 +65,19 @@ typedef struct t_info
 	int				time_to_die;
 	int				keeper_set;
 	char			**sem_names;
-	sem_t			**sem_death;
+	t_sem			*sem;
 }	t_info;
+
+typedef	struct	t_sem
+{
+	sem_t			*forks;
+	sem_t			*keeper;
+	sem_t			*print;
+	sem_t			*plate;
+	sem_t			*end;
+	sem_t			*inform;
+	sem_t			**sem_death;
+} t_sem;
 
 void    print_and_exit(t_info *dinner_info, char *err_msg, int code);
 void	*watchers_phil(void *args);
