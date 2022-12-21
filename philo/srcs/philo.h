@@ -35,6 +35,7 @@ typedef struct t_philo
 	int				print;
 	int				time_to_sleep;
 	int				time_to_eat;
+	int				time_to_die;
 	int				min_dinner;
 	size_t			guest_number;
 	int				guests_numbers;

@@ -3,10 +3,8 @@
 int	has_died(t_philo *philo)
 {
     t_info* dinner_info;
-    int		i;
     long	time;
 
-    i = -1;
     dinner_info = philo -> dinner_info; 
     lock(dinner_info, philo -> death_sem);
     time = current_time() - convert_to_ms(philo -> last_dinner);
@@ -14,8 +12,7 @@ int	has_died(t_philo *philo)
     if (time >= dinner_info -> time_to_die)
     {
         lock(dinner_info, dinner_info -> print);
-        printf("I died at : %f\n", (float)(time));
-	    printf("%li %i died\n", current_time(), philo[i].guest_number + 1);
+	    printf("%li %i died\n", current_time(), philo -> guest_number + 1);
         unlock(dinner_info, dinner_info -> end);
         return (1);
     }

@@ -35,7 +35,7 @@ void    *watch(void *args)
     {
 		lock(dinner_info, dinner_info -> plate);
 		plate++;
-		if (plate == dinner_info -> min_dinner)
+		if (plate == dinner_info -> guests_numbers)
 			unlock(dinner_info, dinner_info -> end);
 		lock(dinner_info, dinner_info -> inform);
 		if (dinner_info -> end_)

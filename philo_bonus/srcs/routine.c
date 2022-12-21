@@ -16,7 +16,7 @@ int	thinking(t_philo *philo)
 void	routine(t_philo *philo)
 {
     if (philo -> guest_number % 2)
-        usleep(philo -> time_to_eat * 0.7);
+        usleep(philo -> time_to_eat * 1000);
     while (1)
     {
         takes_forks(philo);

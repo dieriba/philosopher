@@ -46,18 +46,18 @@ int	eating(t_philo *philo)
     t_info  *dinner_info;
 
     dinner_info = philo -> dinner_info;
-    print_state(philo, "is eating");
-    usleep(philo -> time_to_eat * 1000);
     lock(dinner_info, philo -> death_sem);
     gettimeofday(&philo -> last_dinner, NULL);
     unlock(dinner_info, philo -> death_sem);
+    print_state(philo, "is eating");
+    usleep(philo -> time_to_eat * 1000);
     philo -> eaten_dinner++;
     if (philo -> eaten_dinner == philo -> min_dinner)
     {
         lock(dinner_info, philo -> death_sem);
         release_forks(philo);
         unlock(dinner_info, philo -> dinner_info -> plate);
-        return (1);
+        unlock(dinner_info, dinner_info -> inform);
     }
     return (0);
 }

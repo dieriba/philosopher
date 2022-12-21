@@ -66,10 +66,10 @@ int	eating(t_philo *philo)
 	death = philo -> death;
 	if (print_state(philo, "is eating"))
 		return (1);
+	usleep(philo -> time_to_eat * 1000);
 	pthread_mutex_lock(&death -> death);
 	gettimeofday(&death -> last_dinner, NULL);
 	pthread_mutex_unlock(&death -> death);
-	usleep(philo -> time_to_eat * 1000);
 	philo -> eaten_dinner++;
 	if (philo -> eaten_dinner == philo -> min_dinner)
 	{
