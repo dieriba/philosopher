@@ -16,14 +16,5 @@ void    clear_process(t_info *dinner_info)
     tab = dinner_info -> philo_pid;
     i = -1;
     while (++i < dinner_info -> guests_numbers)
-    {
-        if (kill(tab[i], 0) < 0)
-        {
-            printf("Error\n");
-            continue ;
-        }
-        kill(tab[i], SIGKILL);
-        if (kill(tab[i], 0) < 0)
-            printf("Killed\n");
-    }
+        kill(tab[i], SIGTERM);
 }
