@@ -6,7 +6,7 @@
 /*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 02:52:59 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/22 03:09:09 by dtoure           ###   ########.fr       */
+/*   Updated: 2022/12/22 04:00:33 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ long	ft_atoi(const char *nptr)
 	return (res * sign);
 }
 
-int ft_putstr_fd(char *str, int fd)
+int	ft_putstr_fd(char *str, int fd)
 {
-    if (write(fd, str, ft_strlen(str)) < 0)
-        return (1);
-    return (0);
+	if (write(fd, str, ft_strlen(str)) < 0)
+		return (1);
+	return (0);
 }

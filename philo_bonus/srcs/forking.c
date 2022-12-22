@@ -39,7 +39,7 @@ void	end_dinner(t_info *dinner_info)
 	clean_struct(dinner_info, 1);
 }
 
-void    forking(t_info *dinner_info)
+void	forking(t_info *dinner_info)
 {
 	int		i;
 	t_philo	*philo;

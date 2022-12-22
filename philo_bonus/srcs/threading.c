@@ -19,7 +19,7 @@ void	lets_phil_in(t_info *dinner_info, t_philo *philo)
 	i = philo -> guest_number;
 	dinner_info -> begin = current_time();
 	gettimeofday(&philo -> last_dinner, NULL);
-	philo -> death_sem = dinner_info  -> sem_death[i];
+	philo -> death_sem = dinner_info -> sem_death[i];
 	if (pthread_create(&philo -> watcher, NULL, watchers_phil, philo))
 		print_and_exit(dinner_info, "Failed thread creation\n", 1);
 	routine(philo);
@@ -29,7 +29,7 @@ void	lets_phil_in(t_info *dinner_info, t_philo *philo)
 			print_and_exit(dinner_info, "Failled to detach thrad", 1);
 	}
 	else
-	{   
+	{
 		if (pthread_join(philo -> watcher, NULL))
 			print_and_exit(dinner_info, "Failed joining thread\n", 1);
 	}

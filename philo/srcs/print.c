@@ -14,8 +14,9 @@
 
 int	print_state(t_philo *philo, char *state)
 {
-	pthread_mutex_lock(&philo -> dinner_info -> print);
 	long	formated;
+
+	pthread_mutex_lock(&philo -> dinner_info -> print);
 	philo -> print = 1;
 	if (death(philo))
 		return (1);

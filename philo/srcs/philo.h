@@ -72,7 +72,7 @@ typedef struct t_death
 long	ft_atoi(const char *nptr);
 int		ft_putstr_fd(char *str, int fd);
 size_t	ft_strlen(const char *s);
-int 	ft_isdigit(char c);
+int		ft_isdigit(char c);
 
 void	release_forks(t_philo *philo);
 void	*watchers_phil(void *args);

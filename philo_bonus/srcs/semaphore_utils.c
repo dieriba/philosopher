@@ -6,7 +6,7 @@
 /*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 02:43:18 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/22 02:43:19 by dtoure           ###   ########.fr       */
+/*   Updated: 2022/12/22 04:03:08 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	close_sem(t_info *dinner_info, sem_t *sem)
 
 void	clean_sem_tabs(t_info *dinner_info)
 {
-	size_t		i;
+	size_t	i;
 	sem_t	**sem;
 
 	sem = dinner_info -> sem_death;

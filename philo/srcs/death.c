@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   death.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtoure <dtoure@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 00:24:26 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/20 01:24:48 by dtoure           ###   ########.fr       */
+/*   Updated: 2022/12/22 03:51:36 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	who_died(t_info *dinner_info, t_death *death)
 			dinner_info -> num_of_dead_phil = 1;
 			pthread_mutex_unlock(&dinner_info -> keeper);
 			pthread_mutex_lock(&dinner_info -> print);
-			printf("%09li %li died\n", formated_time(dinner_info -> begin), philo[i].guest_number + 1);
+			printf("%09li %li died\n", formated_time(
+					dinner_info -> begin), philo[i].guest_number + 1);
 			pthread_mutex_unlock(&dinner_info -> print);
 		}
 		if (condition_met(dinner_info))

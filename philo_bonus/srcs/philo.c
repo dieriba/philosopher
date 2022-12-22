@@ -41,7 +41,7 @@ void	print_tab_sem_val(sem_t **sem, char **tabs)
 int	main(int argc, char **argv)
 {
 	t_info	dinner_info;
-	
+
 	if (argc < 5 || argc > 6)
 		return (1);
 	initialization(&dinner_info, argc, argv);

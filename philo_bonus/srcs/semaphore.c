@@ -6,13 +6,14 @@
 /*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 02:43:20 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/22 02:43:21 by dtoure           ###   ########.fr       */
+/*   Updated: 2022/12/22 04:02:35 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	create_sem(t_info *dinner_info, sem_t **sem, char *name, unsigned int val)
+void	create_sem(t_info *dinner_info, sem_t **sem,
+	char *name, unsigned int val)
 {
 	*sem = sem_open(name, O_CREAT | O_EXCL, 0644, val);
 	if (errno == EEXIST)
@@ -37,7 +38,8 @@ void	set_sem_name(t_info *dinner_info)
 		num = ft_itoa(i);
 		tab[i] = ft_strjoin(SEM_DEATH, num);
 		if (!tab[i])
-			print_and_exit(dinner_info, "Error (malloc)(function : set_sem_name)\n", 2);
+			print_and_exit(
+				dinner_info, "Error (malloc)(function : set_sem_name)\n", 2);
 		free(num);
 	}
 }
@@ -58,7 +60,8 @@ void	set_sem_tabs(t_info *dinner_info)
 
 void	init_semaphores(t_info *dinner_info)
 {
-	create_sem(dinner_info, &dinner_info -> forks, SEM_FORKS, dinner_info -> guests_numbers);
+	create_sem(dinner_info, &dinner_info -> forks,
+		SEM_FORKS, dinner_info -> guests_numbers);
 	create_sem(dinner_info, &dinner_info -> print, SEM_PRINT, 1);
 	create_sem(dinner_info, &dinner_info -> plate, SEM_PLATE_EATEN, 0);
 	create_sem(dinner_info, &dinner_info -> inform, SEM_INFORM, 0);

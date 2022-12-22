@@ -6,7 +6,7 @@
 /*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 02:43:31 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/22 02:43:32 by dtoure           ###   ########.fr       */
+/*   Updated: 2022/12/22 04:01:14 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 long	current_time(void)
 {
-    struct timeval	now;
+	struct timeval	now;
 
-    gettimeofday(&now, NULL);
-    return ((now.tv_sec * 1000) + (now.tv_usec / 1000));
+	gettimeofday(&now, NULL);
+	return ((now.tv_sec * 1000) + (now.tv_usec / 1000));
 }
 
-long    convert_to_ms(struct timeval last_dinner)
+long	convert_to_ms(struct timeval last_dinner)
 {
-    long	ms;
+	long	ms;
 	long	us;
 
 	ms = (last_dinner.tv_sec) * 1000;

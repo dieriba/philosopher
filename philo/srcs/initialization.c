@@ -22,13 +22,11 @@ static void	init_struct(t_info *dinner_info, char **argv)
 	dinner_info -> leaved_guests = 0;
 }
 
-static void	initialize_philo(t_info *dinner_info)
+static void	initialize_philo(t_info *dinner_info, int i)
 {
-	int		i;
 	t_philo	*philosophers;
 
 	philosophers = dinner_info -> philosophers;
-	i = -1;
 	while (++i < dinner_info -> guests_numbers)
 	{
 		philosophers[i].keeper_set = 0;
@@ -92,6 +90,6 @@ int	initialization(t_info *dinner_info, int argc, char **argv)
 		free_struct(dinner_info);
 		return (1);
 	}
-	initialize_philo(dinner_info);
+	initialize_philo(dinner_info, -1);
 	return (0);
 }

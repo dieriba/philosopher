@@ -6,17 +6,17 @@
 /*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 03:15:23 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/22 03:18:20 by dtoure           ###   ########.fr       */
+/*   Updated: 2022/12/22 03:50:30 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int ft_putstr_fd(char *str, int fd)
+int	ft_putstr_fd(char *str, int fd)
 {
-    if (write(fd, str, ft_strlen(str)) < 0)
-        return (1);
-    return (0);
+	if (write(fd, str, ft_strlen(str)) < 0)
+		return (1);
+	return (0);
 }
 
 long	ft_atoi(const char *nptr)
@@ -56,9 +56,9 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-int ft_isdigit(char c)
+int	ft_isdigit(char c)
 {
-    if (c >= '0' && c <= '9')
-        return (1);
-    return (0);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
