@@ -44,22 +44,24 @@ static void	initialize_philo(t_info *dinner_info)
 
 static void	check_error(t_info *dinner_info, int argc, char **argv)
 {
+	if (!str_is_only_digit(argc, argv))
+		print_and_exit(NULL, "Only digits are accepted as arguments.\n", 1);
 	if (argc > 5)
 		dinner_info -> min_dinner = ft_atoi(argv[5]);
 	else
 		dinner_info -> min_dinner = 0;
 	if (dinner_info -> guests_numbers < 1)
 		print_and_exit(
-			NULL, "Philosophers numbers must be greater or equal to 1\n", 1);
+			NULL, "Philosophers numbers must be greater or equal to 1.\n", 1);
 	if (dinner_info -> time_to_die < 0)
-		print_and_exit(NULL, "Time to die must be a non negative value\n", 1);
+		print_and_exit(NULL, "Time to die must be a non negative value.\n", 1);
 	if (dinner_info -> time_to_eat < 0)
-		print_and_exit(NULL, "Time to eat must be a non negative value\n", 1);
+		print_and_exit(NULL, "Time to eat must be a non negative value.\n", 1);
 	if (dinner_info -> time_to_sleep < 0)
-		print_and_exit(NULL, "Time to sleep must be a non negative value\n", 1);
+		print_and_exit(NULL, "Time to sleep must be a non negative value.\n", 1);
 	if (argc > 5 && dinner_info -> min_dinner <= 0)
 		print_and_exit(
-			NULL, "number of eats must be superior or equal to 0\n", 1);
+			NULL, "number of eats must be superior or equal to 0.\n", 1);
 }
 
 void	malloc_struct(t_info *dinner_info)

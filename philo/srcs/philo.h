@@ -69,16 +69,9 @@ typedef struct t_death
 	pthread_mutex_t	death;
 }	t_death;
 
-long	ft_atoi(const char *nptr);
 int		ft_putstr_fd(char *str, int fd);
-size_t	ft_strlen(const char *s);
 int		ft_isdigit(char c);
-
-void	release_forks(t_philo *philo);
-void	*watchers_phil(void *args);
-void	free_struct(t_info *dinner_info);
-void	*routine(void *args);
-void	ft_usleep(long time_to_sleep);
+int		str_is_only_digit(int argc, char **argv);
 int		unlock_mutexes(t_philo *philo);
 int		eating(t_philo *philo);
 int		takes_forks(t_philo *philo);
@@ -90,8 +83,17 @@ int		malloc_struct(t_info *dinner_info);
 int		clean_mutexes(t_info *dinner_info);
 int		initialize_mutexes(t_info *dinner_info);
 
+void	release_forks(t_philo *philo);
+void	*watchers_phil(void *args);
+void	free_struct(t_info *dinner_info);
+void	*routine(void *args);
+void	ft_usleep(long time_to_sleep);
+
 long	current_time_death(void);
 long	formated_time(long time);
 long	convert_ts_to_ms(t_death *death);
 long	current_time(void);
+long	ft_atoi(const char *nptr);
+
+size_t	ft_strlen(const char *s);
 #endif

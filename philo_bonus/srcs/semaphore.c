@@ -6,7 +6,7 @@
 /*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 02:43:20 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/22 04:02:35 by dtoure           ###   ########.fr       */
+/*   Updated: 2022/12/22 05:21:55 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void	init_semaphores(t_info *dinner_info)
 	create_sem(dinner_info, &dinner_info -> plate, SEM_PLATE_EATEN, 0);
 	create_sem(dinner_info, &dinner_info -> inform, SEM_INFORM, 0);
 	create_sem(dinner_info, &dinner_info -> end, SEM_END, 0);
+	create_sem(dinner_info, &dinner_info -> warn_end, SEM_END_FIRST, 0);
 	set_sem_tabs(dinner_info);
 }

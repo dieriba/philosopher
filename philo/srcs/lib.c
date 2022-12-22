@@ -6,7 +6,7 @@
 /*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 03:15:23 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/22 03:50:30 by dtoure           ###   ########.fr       */
+/*   Updated: 2022/12/22 04:35:12 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	ft_putstr_fd(char *str, int fd)
 {
+	size_t	len;
+
+	len = ft_strlen(str);
 	if (write(fd, str, ft_strlen(str)) < 0)
-		return (1);
-	return (0);
+		return (-1);
+	return (len);
 }
 
 long	ft_atoi(const char *nptr)
@@ -61,4 +64,23 @@ int	ft_isdigit(char c)
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
+}
+
+int	str_is_only_digit(int argc, char **argv)
+{
+	int		i;
+	size_t	j;
+	char	*str;
+
+	j = -1;
+	i = 0;
+	while (++i < argc)
+	{
+		str = argv[i];
+		while (str[++j])
+			if (!ft_isdigit(str[j]))
+				return (0);
+		j = -1;
+	}
+	return (1);
 }

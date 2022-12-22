@@ -48,6 +48,7 @@ void	destroy_sems(t_info *dinner_info)
 	destroy_sem(dinner_info, SEM_END);
 	destroy_sem(dinner_info, SEM_PLATE_EATEN);
 	destroy_sem(dinner_info, SEM_INFORM);
+	destroy_sem(dinner_info, SEM_END_FIRST);
 }
 
 void	clean_struct(t_info *dinner_info, int main)

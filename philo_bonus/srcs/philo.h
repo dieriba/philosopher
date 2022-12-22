@@ -32,6 +32,7 @@
 # define SEM_DEATH "/sem_death_"
 # define SEM_END "/sem_end"
 # define SEM_PLATE_EATEN "/sem_phil_plate_eaten"
+# define SEM_END_FIRST "/sem_end_first"
 
 typedef struct t_info	t_info;
 typedef struct t_sem	t_sem;
@@ -66,6 +67,7 @@ typedef struct t_info
 	sem_t			*inform;
 	sem_t			**sem_death;
 	pid_t			*philo_pid;
+	sem_t			*warn_end;
 	pthread_t		watchers;
 	int				guests_numbers;
 	long			begin;
@@ -91,6 +93,7 @@ typedef struct t_sem
 	sem_t	**sem_death;
 }	t_sem;
 
+int		str_is_only_digit(int argc, char **argv);
 int		ft_isdigit(char c);
 int		ft_putstr_fd(char *str, int fd);
 int		ft_nblen(int n);

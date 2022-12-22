@@ -6,7 +6,7 @@
 /*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 02:42:50 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/22 04:04:41 by dtoure           ###   ########.fr       */
+/*   Updated: 2022/12/22 05:23:10 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	has_died(t_philo *philo)
 		lock(dinner_info, dinner_info -> print);
 		printf("%011li %i died\n",
 			formated_time(dinner_info -> begin), philo -> guest_number + 1);
+		unlock(dinner_info, dinner_info -> warn_end);
 		unlock(dinner_info, dinner_info -> end);
 		return (1);
 	}
