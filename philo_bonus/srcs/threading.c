@@ -46,12 +46,14 @@ void	*watch(void *args)
 	while (1)
 	{
 		lock(dinner_info, dinner_info -> plate);
-		plate++;
-		if (plate == dinner_info -> guests_numbers)
-			unlock(dinner_info, dinner_info -> end);
 		lock(dinner_info, dinner_info -> inform);
-		if (dinner_info -> end_)
+		plate = ++dinner_info -> plates;
+		unlock(dinner_info, dinner_info -> inform);
+		if (plate == dinner_info -> guests_numbers)
+		{
+			unlock(dinner_info, dinner_info -> end);
 			return (NULL);
+		}
 	}
 	return (NULL);
 }

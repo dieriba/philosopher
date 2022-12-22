@@ -32,16 +32,8 @@ void	takes_left(t_philo *philo)
 
 void	takes_forks(t_philo *philo)
 {
-	if (!(philo -> guest_number % 2))
-	{
-		takes_left(philo);
-		takes_right(philo);
-	}
-	else
-	{
-		takes_right(philo);
-		takes_left(philo);
-	}
+	takes_left(philo);
+	takes_right(philo);
 }
 
 void	release_forks(t_philo *philo)

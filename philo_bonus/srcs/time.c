@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
+/*   By: dtoure <dtoure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 02:43:31 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/22 04:01:14 by dtoure           ###   ########.fr       */
+/*   Updated: 2022/12/22 18:14:58 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,7 @@ long	current_time(void)
 
 long	convert_to_ms(struct timeval last_dinner)
 {
-	long	ms;
-	long	us;
-
-	ms = (last_dinner.tv_sec) * 1000;
-	us = (last_dinner.tv_usec) / 1000;
-	return (ms + us);
+	return ((last_dinner.tv_sec) * 1e6 + last_dinner.tv_usec);
 }
 
 long	current_time_death(void)

@@ -28,7 +28,7 @@ int	thinking(t_philo *philo)
 void	routine(t_philo *philo)
 {
 	if (philo -> guest_number % 2)
-		ft_usleep(philo -> time_to_eat);
+		ft_usleep(philo -> time_to_eat * 0.7);
 	while (1)
 	{
 		if (philo -> eaten_dinner && philo -> guests_numbers % 2)

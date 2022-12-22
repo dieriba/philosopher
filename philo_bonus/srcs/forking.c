@@ -31,9 +31,10 @@ void	end_dinner(t_info *dinner_info)
 	if (pthread_create(&dinner_info -> watchers, NULL, watch, dinner_info))
 		print_and_exit(dinner_info, "Failed thread creation\n", 1);
 	lock(dinner_info, dinner_info -> end);
-	dinner_info -> end_ = 1;
-	unlock(dinner_info, dinner_info -> plate);
+	lock(dinner_info, dinner_info -> inform);
+	dinner_info -> plates = dinner_info -> guests_numbers - 1;
 	unlock(dinner_info, dinner_info -> inform);
+	unlock(dinner_info, dinner_info -> plate);
 	if (pthread_join(dinner_info -> watchers, NULL))
 		print_and_exit(dinner_info, "Failed joind thread\n", 1);
 	clean_struct(dinner_info, 1);

@@ -73,6 +73,7 @@ typedef struct t_info
 	long			begin;
 	int				min_dinner;
 	int				end_;
+	int				plates;
 	int				leaved_guests;
 	int				time_to_sleep;
 	int				time_to_eat;

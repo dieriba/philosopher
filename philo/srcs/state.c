@@ -34,8 +34,8 @@ int	takes_forks(t_philo *philo)
 	{
 		if (takes_left(philo))
 			return (1);
-		if (philo -> right_f
-			== philo -> left_f)
+		if (philo -> right
+			!= philo -> left)
 		{
 			if (takes_right(philo))
 				return (1);
