@@ -51,7 +51,7 @@ int	who_died(t_info *dinner_info, t_death *death)
 	while (++i < dinner_info -> guests_numbers)
 	{
 		pthread_mutex_lock(&death[i].death);
-		time = current_time() - convert_ts_to_ms(&death[i]);
+		time = current_time_death() - convert_ts_to_ms(&death[i]);
 		pthread_mutex_unlock(&death[i].death);
 		if (time >= dinner_info -> time_to_die)
 		{

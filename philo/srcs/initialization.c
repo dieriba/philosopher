@@ -16,7 +16,7 @@ static void	init_struct(t_info *dinner_info, char **argv)
 {
 	dinner_info -> num_of_dead_phil = 0;
 	dinner_info -> guests_numbers = ft_atoi(argv[1]);
-	dinner_info -> time_to_die = ft_atoi(argv[2]);
+	dinner_info -> time_to_die = ft_atoi(argv[2]) * 1000;
 	dinner_info -> time_to_eat = ft_atoi(argv[3]);
 	dinner_info -> time_to_sleep = ft_atoi(argv[4]);
 	dinner_info -> leaved_guests = 0;
@@ -31,7 +31,6 @@ static void	initialize_philo(t_info *dinner_info)
 	i = -1;
 	while (++i < dinner_info -> guests_numbers)
 	{
-		dinner_info -> death[i].dead = 0;
 		philosophers[i].keeper_set = 0;
 		philosophers[i].left_f = 0;
 		philosophers[i].right_f = 0;
@@ -40,7 +39,7 @@ static void	initialize_philo(t_info *dinner_info)
 		philosophers[i].guests_numbers = dinner_info -> guests_numbers;
 		philosophers[i].time_to_eat = dinner_info -> time_to_eat;
 		philosophers[i].time_to_sleep = dinner_info -> time_to_sleep;
-		philosophers[i].time_to_die = dinner_info -> time_to_die;
+		philosophers[i].time_to_die = dinner_info -> time_to_die / 1000;
 		philosophers[i].min_dinner = dinner_info -> min_dinner;
 		philosophers[i].death = &dinner_info -> death[i];
 		philosophers[i].eaten_dinner = 0;

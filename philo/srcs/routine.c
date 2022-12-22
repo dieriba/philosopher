@@ -15,8 +15,7 @@
 int	sleeping(t_philo *philo)
 {
 	print_state(philo, "is sleeping");
-	usleep(philo -> time_to_sleep * 1000);
-	
+	ft_usleep(philo -> time_to_sleep);
 	return (0);
 }
 
@@ -32,9 +31,11 @@ void	*routine(void *args)
 
 	philo = (t_philo *)(args);
 	if (philo -> guest_number % 2)
-		usleep(philo -> time_to_die * 1000 * 0.2);
+		ft_usleep(philo -> time_to_eat * 0.7);
 	while (1)
 	{
+		if (philo -> eaten_dinner && philo -> guests_numbers % 2)
+			ft_usleep(philo -> time_to_die * 0.4);
 		if (takes_forks(philo))
 			break ;
 		if (eating(philo))

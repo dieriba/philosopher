@@ -11,6 +11,9 @@ SRCS_BONUS	= 	./srcs/initialization.c \
 				./srcs/death.c \
 				./srcs/routine.c \
 				./srcs/state.c \
+				./srcs/lib.c \
+				./srcs/lib_utils.c \
+				./srcs/lib_utils2.c \
 
 
 OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
@@ -31,13 +34,7 @@ bonus:		all
 			$(CC) -g3 $(CFLAGS) -c $< -o $@
 			
 $(PHILO):	${OBJS_BONUS}
-			make -C ./libft/ft_printf
-			cp ./libft/ft_printf/libprintf.a ./lib
-			make -C ./libft
-			cp ./libft/libft.a ./lib
-			make -C ./libft/get_next_line
-			cp ./libft/get_next_line/libgnl.a ./lib
-			$(CC) $(CFLAGS) ${OBJS_BONUS} -g3 -L./lib -lft -lpthread -lprintf -lgnl -o $(PHILO)
+			$(CC) $(CFLAGS) ${OBJS_BONUS} -g3 -lpthread -o $(PHILO)
 
 
 clean:
@@ -45,10 +42,7 @@ clean:
 			rm -rf $(DEPS_BONUS)
 			
 fclean:		clean
-			make -C ./libft fclean
-			make -C ./libft/ft_printf fclean
-			make -C ./libft/get_next_line fclean
-			rm -rf $(PHILO) ./lib/*.a
+			rm -rf $(PHILO)
 
 re:			fclean all
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   initialization.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/22 02:42:59 by dtoure            #+#    #+#             */
+/*   Updated: 2022/12/22 02:42:59 by dtoure           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 static void	init_struct(t_info *dinner_info, char **argv)
@@ -18,6 +30,8 @@ static void	initialize_philo(t_info *dinner_info)
 	{
 		dinner_info -> philosophers[i].keeper_set = 0;
 		dinner_info -> philosophers[i].guest_number = i;
+		dinner_info -> philosophers[i].guests_numbers = dinner_info -> guests_numbers;
+		dinner_info -> philosophers[i].time_to_die = dinner_info -> time_to_die;
 		dinner_info -> philosophers[i].time_to_eat = dinner_info -> time_to_eat;
 		dinner_info -> philosophers[i].time_to_sleep = dinner_info -> time_to_sleep;
 		dinner_info -> philosophers[i].min_dinner = dinner_info -> min_dinner;
@@ -46,7 +60,7 @@ static void	check_error(t_info *dinner_info, int argc, char **argv)
 
 void	malloc_struct(t_info *dinner_info)
 {
-    dinner_info -> philosophers = malloc(sizeof(t_philo) * dinner_info -> guests_numbers);
+	dinner_info -> philosophers = malloc(sizeof(t_philo) * dinner_info -> guests_numbers);
 	if (!dinner_info -> philosophers)
 		print_and_exit(dinner_info, "Sadly, All philosophers were unable to attend the dinner (malloc)\n", 2);
 	dinner_info -> philo_pid = malloc(sizeof(pid_t) * dinner_info -> guests_numbers);

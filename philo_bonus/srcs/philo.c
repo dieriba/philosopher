@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/22 02:43:03 by dtoure            #+#    #+#             */
+/*   Updated: 2022/12/22 02:43:03 by dtoure           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	get_sem_value(char *name, sem_t *sem)
 {
-	int val;
+	int	val;
 
 	sem_getvalue(sem, &val);
 	printf("%s value is : %d\n", name, val);
@@ -34,7 +46,5 @@ int	main(int argc, char **argv)
 		return (1);
 	initialization(&dinner_info, argc, argv);
 	forking(&dinner_info);
-	// print_generic_sem_val(dinner_info);
-	// print_tab_sem_val(dinner_info.sem_death, dinner_info.sem_names);
 	return (0);
 }

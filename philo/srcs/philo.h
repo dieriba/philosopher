@@ -20,7 +20,6 @@
 # include <sys/time.h>
 # include <string.h>
 # include <sys/time.h>
-# include "../libft/libft.h"
 
 typedef struct t_philo		t_philo;
 typedef struct t_info		t_info;
@@ -68,15 +67,18 @@ typedef struct t_death
 {
 	struct timeval	last_dinner;
 	pthread_mutex_t	death;
-	int				dead;
 }	t_death;
+
+long	ft_atoi(const char *nptr);
+int		ft_putstr_fd(char *str, int fd);
+size_t	ft_strlen(const char *s);
+int 	ft_isdigit(char c);
 
 void	release_forks(t_philo *philo);
 void	*watchers_phil(void *args);
 void	free_struct(t_info *dinner_info);
 void	*routine(void *args);
-void	ft_usleep(int time_to_sleep);
-
+void	ft_usleep(long time_to_sleep);
 int		unlock_mutexes(t_philo *philo);
 int		eating(t_philo *philo);
 int		takes_forks(t_philo *philo);
@@ -88,6 +90,7 @@ int		malloc_struct(t_info *dinner_info);
 int		clean_mutexes(t_info *dinner_info);
 int		initialize_mutexes(t_info *dinner_info);
 
+long	current_time_death(void);
 long	formated_time(long time);
 long	convert_ts_to_ms(t_death *death);
 long	current_time(void);

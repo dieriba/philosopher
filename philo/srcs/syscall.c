@@ -54,19 +54,11 @@ int	malloc_struct(t_info *dinner_info)
 	return (0);
 }
 
-void	ft_usleep(int time_to_sleep)
+void	ft_usleep(long time_to_sleep)
 {
-	int	mod;
-	int	to_iter;
+	long	begin;
 
-	to_iter = 0;
-	mod = time_to_sleep % 10;
-	to_iter = mod / 10;
-	while (to_iter)
-	{
+	begin = current_time();
+	while (current_time() - begin < time_to_sleep)
 		usleep(10);
-		to_iter /= 10;
-	}
-	if (mod)
-		usleep(mod);
 }

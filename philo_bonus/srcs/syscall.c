@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   syscall.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/22 02:43:26 by dtoure            #+#    #+#             */
+/*   Updated: 2022/12/22 02:43:26 by dtoure           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	free_struct(t_info *dinner_info)
@@ -47,19 +59,11 @@ void	clean_struct(t_info *dinner_info, int main)
 	free_struct(dinner_info);
 }
 
-void	ft_usleep(int time_to_sleep)
+void	ft_usleep(long time_to_sleep)
 {
-	int	mod;
-	int	to_iter;
+	long	begin;
 
-	to_iter = 0;
-	mod = time_to_sleep % 10;
-	to_iter = mod / 10;
-	while (to_iter)
-	{
+	begin = current_time();
+	while (current_time() - begin < time_to_sleep)
 		usleep(10);
-		to_iter /= 10;
-	}
-	if (mod)
-		usleep(mod);
 }

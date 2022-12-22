@@ -8,6 +8,7 @@ SRCS		=   ./srcs/initialization.c \
 				./srcs/print.c \
 				./srcs/syscall.c \
 				./srcs/routine.c \
+				./srcs/lib.c \
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -25,13 +26,7 @@ all:		$(PHILO)
 			$(CC) -g3 $(CFLAGS) -c $< -o $@
 
 $(PHILO):	${OBJS}
-			make -C ./libft/ft_printf
-			cp ./libft/ft_printf/libprintf.a ./lib
-			make -C ./libft
-			cp ./libft/libft.a ./lib
-			make -C ./libft/get_next_line
-			cp ./libft/get_next_line/libgnl.a ./lib
-			$(CC) $(CFLAGS) ${OBJS} -g3 -L./lib -lft -lpthread -lprintf -lgnl -o $(PHILO)
+			$(CC) $(CFLAGS) ${OBJS} -g3 -lpthread -o $(PHILO)
 
 
 clean:
@@ -39,10 +34,7 @@ clean:
 			rm -rf $(DEPS)
 			
 fclean:		clean
-			make -C ./libft fclean
-			make -C ./libft/ft_printf fclean
-			make -C ./libft/get_next_line fclean
-			rm -rf $(PHILO) ./lib/*.a
+			rm -rf $(PHILO)
 
 re:			fclean all
 
