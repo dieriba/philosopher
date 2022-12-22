@@ -19,7 +19,7 @@ static int	join_threads(t_info *dinner_info)
 
 	j = dinner_info -> guests_numbers;
 	i = -1;
-	while (++i < j && j > 1)
+	while (++i < j)
 		if (pthread_join(dinner_info -> philosophers[i].thread, NULL))
 			return (1);
 	if (pthread_join(dinner_info -> watchers, NULL))
@@ -58,11 +58,6 @@ int	start_and_joining_threads(t_info *dinner_info)
 		free_struct(dinner_info);
 		clean_mutexes(dinner_info);
 		return (1);
-	}
-	if (dinner_info -> guests_numbers == 1)
-	{
-		if (pthread_detach(dinner_info -> philosophers[0].thread))
-			return (1);
 	}
 	clean_mutexes(dinner_info);
 	return (0);

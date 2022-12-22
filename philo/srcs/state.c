@@ -16,7 +16,7 @@ int	takes_right(t_philo *philo)
 {
 	pthread_mutex_lock(philo -> right);
 	philo -> right_f = 1;
-	print_state(philo, "has taken right fork");
+	print_state(philo, "has taken a fork");
 	return (0);
 }
 
@@ -24,7 +24,7 @@ int	takes_left(t_philo *philo)
 {
 	pthread_mutex_lock(philo -> left);
 	philo -> left_f = 1;
-	print_state(philo, "has taken left fork");
+	print_state(philo, "has taken a fork");
 	return (0);
 }
 
@@ -34,8 +34,12 @@ int	takes_forks(t_philo *philo)
 	{
 		if (takes_left(philo))
 			return (1);
-		if (takes_right(philo))
-			return (1);
+		if (philo -> right_f
+			== philo -> left_f)
+		{
+			if (takes_right(philo))
+				return (1);
+		}
 	}
 	else
 	{
@@ -62,6 +66,8 @@ int	eating(t_philo *philo)
 	t_death	*death;
 	t_info	*dinner_info;
 
+	if (philo -> guests_numbers == 1)
+		return (1);
 	dinner_info = philo -> dinner_info;
 	death = philo -> death;
 	if (print_state(philo, "is eating"))

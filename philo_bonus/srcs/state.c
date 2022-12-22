@@ -18,7 +18,7 @@ void	takes_right(t_philo *philo)
 
 	dinner_info = philo -> dinner_info;
 	lock(dinner_info, dinner_info -> forks);
-	print_state(philo, "takes a fork");
+	print_state(philo, "has taken a fork");
 }
 
 void	takes_left(t_philo *philo)
@@ -27,7 +27,7 @@ void	takes_left(t_philo *philo)
 
 	dinner_info = philo -> dinner_info;
 	lock(dinner_info, dinner_info -> forks);
-	print_state(philo, "takes a fork");
+	print_state(philo, "has taken a fork");
 }
 
 void	takes_forks(t_philo *philo)

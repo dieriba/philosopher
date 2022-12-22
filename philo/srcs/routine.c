@@ -35,7 +35,7 @@ void	*routine(void *args)
 	while (1)
 	{
 		if (philo -> eaten_dinner && philo -> guests_numbers % 2)
-			ft_usleep(philo -> time_to_die * 0.4);
+			ft_usleep(philo -> time_to_die * 0.3);
 		if (takes_forks(philo))
 			break ;
 		if (eating(philo))
