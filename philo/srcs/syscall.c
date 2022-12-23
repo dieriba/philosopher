@@ -54,5 +54,5 @@ void	ft_usleep(long time_to_sleep)
 
 	begin = current_time();
 	while (current_time() - begin < time_to_sleep)
-		usleep(10);
+		usleep(5);
 }
