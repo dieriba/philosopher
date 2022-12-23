@@ -21,6 +21,16 @@
 # include <string.h>
 # include <sys/time.h>
 
+# define TIME_REQUIREMENT "The time must be a non negative value.\n"
+# define NEGATIVE_VALUE "number of plate must be superior or equal to 0.\n"
+# define PHILOSOPHE_NUM "Philosophers numbers must be greater or equal to 1.\n"
+# define DIGITS_ONLY "Only digits are accepted as arguments.\n"
+# define ALLOC_ERROR "An error occured durring malloc systemcall.\n"
+
+# define MUTEXES_INI_ERR "We were not able to initialize all of the mutexes.\n"
+# define WRONG_ARGS "Usage : ./philo number_of_philosophers time_to_die time_to_eat \
+time_to_sleep (optional : [number_of_times_each_philosopher_must_eat]).\n"
+
 typedef struct t_philo		t_philo;
 typedef struct t_info		t_info;
 typedef struct t_death		t_death;

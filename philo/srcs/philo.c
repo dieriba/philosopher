@@ -18,10 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 5 || argc > 6)
 	{
-		ft_putstr_fd("Usage : ./philo number_of_philosophers ", 2);
-		ft_putstr_fd("time_to_die time_to_eat time_to_sleep ", 2);
-		ft_putstr_fd(
-			"(optional : [number_of_times_each_philosopher_must_eat])\n", 2);
+		ft_putstr_fd(WRONG_ARGS, 2);
 		return (1);
 	}
 	if (initialization(&dinner_info, argc, argv))

@@ -61,25 +61,21 @@ static int	initialize_dinner(t_info *dinner_info)
 static int	check_error(t_info *dinner_info, int argc, char **argv)
 {
 	if (!str_is_only_digit(argc, argv))
-		return (ft_putstr_fd("Only digits are allowed as arguments !\n", 2));
+		return (ft_putstr_fd(DIGITS_ONLY, 2));
 	if (argc > 5)
 		dinner_info -> min_dinner = ft_atoi(argv[5]);
 	else
 		dinner_info -> min_dinner = 0;
 	if (dinner_info -> guests_numbers < 1)
-		return (ft_putstr_fd(
-				"Philosophers numbers must be greater or equal to 1.\n", 2));
+		return (ft_putstr_fd(PHILOSOPHE_NUM, 2));
 	if (dinner_info -> time_to_die < 0)
-		return (ft_putstr_fd("Time to die must be a non negative value.\n", 2));
+		return (ft_putstr_fd(TIME_REQUIREMENT, 2));
 	if (dinner_info -> time_to_eat < 0)
-		return (ft_putstr_fd("Time to eat must be a non negative value.\n", 2));
+		return (ft_putstr_fd(TIME_REQUIREMENT, 2));
 	if (dinner_info -> time_to_sleep < 0)
-		return (
-			ft_putstr_fd("Time to sleep must be a non negative value.\n", 2));
+		return (ft_putstr_fd(TIME_REQUIREMENT, 2));
 	if (argc > 5 && dinner_info -> min_dinner <= 0)
-		return (
-			ft_putstr_fd(
-				"number of plate must be superior or equal to 0.\n", 2));
+		return (ft_putstr_fd(NEGATIVE_VALUE, 2));
 	return (0);
 }
 

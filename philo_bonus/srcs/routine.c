@@ -32,7 +32,7 @@ void	routine(t_philo *philo)
 	while (1)
 	{
 		if (philo -> eaten_dinner && philo -> guests_numbers % 2)
-			ft_usleep(philo -> time_to_die * 0.3);
+			ft_usleep(philo -> time_to_die * 0.25);
 		takes_forks(philo);
 		eating(philo);
 		release_forks(philo);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mutex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtoure <dtoure@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 01:25:24 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/20 01:29:33 by dtoure           ###   ########.fr       */
+/*   Updated: 2022/12/23 18:40:48 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,20 @@ int	initialize_mutexes(t_info *dinner_info)
 
 	i = -1;
 	while (++i < dinner_info -> guests_numbers)
+	{
 		if (pthread_mutex_init(&dinner_info -> forks[i], NULL))
-			return (
-				ft_putstr_fd(
-					"We were not able to initialize all of the mutexes\n", 2));
+			return (ft_putstr_fd(MUTEXES_INI_ERR, 2));
+	}
 	i = -1;
 	while (++i < dinner_info -> guests_numbers)
+	{
 		if (pthread_mutex_init(&dinner_info -> death[i].death, NULL))
-			return (
-				ft_putstr_fd(
-					"We were not able to initialize all of the mutexes\n", 2));
+			return (ft_putstr_fd(MUTEXES_INI_ERR, 2));
+	}
 	if (pthread_mutex_init(&dinner_info -> print, NULL))
-		return (ft_putstr_fd(
-				"We were not able to initialize all of the mutexes\n", 2));
+		return (ft_putstr_fd(MUTEXES_INI_ERR, 2));
 	if (pthread_mutex_init(&dinner_info -> keeper, NULL))
 		return (
-			ft_putstr_fd(
-				"We were not able to initialize all of the mutexes\n", 2));
+			ft_putstr_fd(MUTEXES_INI_ERR, 2));
 	return (0);
 }

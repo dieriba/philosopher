@@ -6,7 +6,7 @@
 /*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 02:43:20 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/22 05:21:55 by dtoure           ###   ########.fr       */
+/*   Updated: 2022/12/23 18:33:13 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	create_sem(t_info *dinner_info, sem_t **sem,
 		*sem = sem_open(name, O_CREAT | O_EXCL, 0644, val);
 	}
 	if (*sem == SEM_FAILED)
-		print_and_exit(dinner_info, "semaphore (syscall failed)\n", 1);
+		print_and_exit(dinner_info, SEM_OP_ERR, 1);
 }
 
 void	set_sem_name(t_info *dinner_info)
@@ -38,8 +38,7 @@ void	set_sem_name(t_info *dinner_info)
 		num = ft_itoa(i);
 		tab[i] = ft_strjoin(SEM_DEATH, num);
 		if (!tab[i])
-			print_and_exit(
-				dinner_info, "Error (malloc)(function : set_sem_name)\n", 2);
+			print_and_exit(dinner_info, ALLOC_ERROR, 2);
 		free(num);
 	}
 }
@@ -66,6 +65,5 @@ void	init_semaphores(t_info *dinner_info)
 	create_sem(dinner_info, &dinner_info -> plate, SEM_PLATE_EATEN, 0);
 	create_sem(dinner_info, &dinner_info -> inform, SEM_INFORM, 0);
 	create_sem(dinner_info, &dinner_info -> end, SEM_END, 0);
-	create_sem(dinner_info, &dinner_info -> warn_end, SEM_END_FIRST, 0);
 	set_sem_tabs(dinner_info);
 }

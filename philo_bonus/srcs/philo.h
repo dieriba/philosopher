@@ -26,13 +26,26 @@
 # include <fcntl.h> 
 # include <sys/stat.h>   
 
+# define TIME_REQUIREMENT "The time must be a non negative value.\n"
+# define NEGATIVE_VALUE "number of eats must be superior or equal to 0.\n"
+# define PHILOSOPHE_NUM "Philosophers numbers must be greater or equal to 1.\n"
+# define DIGITS_ONLY "Only digits are accepted as arguments.\n"
+# define ALLOC_ERROR "An error occured durring malloc systemcall.\n"
+# define WRONG_ARGS "Usage : ./philo number_of_philosophers time_to_die time_to_eat \
+time_to_sleep (optional : [number_of_times_each_philosopher_must_eat]).\n"
+
 # define SEM_FORKS "/sem_forks"
 # define SEM_INFORM "/sem_inform"
 # define SEM_PRINT "/sem_print"
 # define SEM_DEATH "/sem_death_"
 # define SEM_END "/sem_end"
 # define SEM_PLATE_EATEN "/sem_phil_plate_eaten"
-# define SEM_END_FIRST "/sem_end_first"
+
+# define SEM_OP_ERR "Error with sem open.\n"
+# define SEM_CL_ERR "Semaphore close failled.\n"
+# define SEM_WAIT_ERR "Error with sem_wait.\n"
+# define SEM_UNL_ERR "Semaphore unlink failed.\n"
+# define SEM_POST_ERR "Error with sem_post.\n"
 
 typedef struct t_info	t_info;
 typedef struct t_sem	t_sem;
@@ -58,19 +71,7 @@ typedef struct t_philo
 
 typedef struct t_info
 {
-	t_philo			*philosophers;
-	sem_t			*forks;
-	sem_t			*keeper;
-	sem_t			*print;
-	sem_t			*plate;
-	sem_t			*end;
-	sem_t			*inform;
-	sem_t			**sem_death;
-	pid_t			*philo_pid;
-	sem_t			*warn_end;
-	pthread_t		watchers;
 	int				guests_numbers;
-	long			begin;
 	int				min_dinner;
 	int				end_;
 	int				plates;
@@ -80,7 +81,19 @@ typedef struct t_info
 	int				time_to_die;
 	int				keeper_set;
 	char			**sem_names;
+	long			begin;
+	pid_t			*philo_pid;
+	pthread_t		watchers;
+	sem_t			*forks;
+	sem_t			*keeper;
+	sem_t			*print;
+	sem_t			*plate;
+	sem_t			*end;
+	sem_t			*inform;
+	sem_t			**sem_death;
+	sem_t			*warn_end;
 	t_sem			*sem;
+	t_philo			*philosophers;
 }	t_info;
 
 typedef struct t_sem
