@@ -6,7 +6,7 @@
 /*   By: dtoure <dtoure@student42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 01:25:24 by dtoure            #+#    #+#             */
-/*   Updated: 2022/12/23 18:40:48 by dtoure           ###   ########.fr       */
+/*   Updated: 2023/02/18 22:13:36 by dtoure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ int	clean_mutexes(t_info *dinner_info)
 	i = -1;
 	while (++i < j && j > 1)
 	{
-		if (pthread_mutex_destroy(&dinner_info -> forks[i]))
+		if (dinner_info -> forks
+			&& pthread_mutex_destroy(&dinner_info -> forks[i]))
 			return (1);
-		if (pthread_mutex_destroy(&dinner_info -> death[i].death))
+		if (dinner_info -> death
+			&& pthread_mutex_destroy(&dinner_info -> death[i].death))
 			return (1);
 	}
 	if (pthread_mutex_destroy(&dinner_info -> print))
